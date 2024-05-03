@@ -1,1 +1,16 @@
-<p>season works!</p>
+<table style="width: auto;">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Record</th>
+        <th>Coach</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let season of seasons">
+        <td>{{ season.teamName }}</td>
+        <td>{{ createRecord(season.gamesWon, season.gamesLost) }}
+        <td>{{ season.coach }}</td>
+      </tr>
+    </tbody>
+  </table>
