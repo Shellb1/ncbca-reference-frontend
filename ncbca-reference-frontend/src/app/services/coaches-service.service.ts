@@ -13,7 +13,7 @@ export class CoachesService {
   constructor(private http: HttpClient) {}
 
   getCoachSummary(coach: string): Observable<CoachSummary> {
-    return this.http.get<CoachSummary>(`/ncbca-reference-backend/coachSummary?coach=${coach}`);
+    return this.http.get<CoachSummary>(`/ncbca-reference-backend/coachSummary?coachName=${coach}`);
   }
   
 }

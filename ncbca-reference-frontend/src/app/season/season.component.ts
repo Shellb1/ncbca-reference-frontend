@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeasonsServiceService } from '../services/seasons-service.service';
 import { Season } from '../model/Season';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -16,7 +16,8 @@ export class SeasonComponent implements OnInit {
   seasons: Season[] = [];
 
   constructor(private seasonsService: SeasonsServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
 
   ) { }
 
@@ -41,4 +42,10 @@ export class SeasonComponent implements OnInit {
   createRecord(gamesWon: Number, gamesLost: Number): string {
     return gamesWon + "-" + gamesLost;
   }
+
+  navigateToCoachSummary(coach: string) {
+    this.router.navigate(['/coachSummary'], { queryParams: { coach: coach } });
+  }
+  
+
 }

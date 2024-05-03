@@ -1,1 +1,18 @@
-<p>coach works!</p>
+<h1>Coach Summary for: {{ coachSummaryFor }}</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Team</th>
+        <th>Record</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let season of coachSummary?.seasonsCoached">
+        <td>{{ season.seasonYear }}</td>
+        <td>{{ season?.teamName }}</td>
+        <td>{{ createRecord(season?.gamesWon || 0, season?.gamesLost || 0) }}</td>
+      </tr>
+    </tbody>
+    
+    </table>
