@@ -22,9 +22,13 @@
               <td>{{ determineRecordAtGame(game, teamSummary?.games) }}</td>
               <td>{{ determineConferenceRecordAtGame(game, teamSummary?.games) }}</td>
           </tr>
-          <!-- Add a row when index is 34 -->
+          <!-- Conference tournament row -->
           <tr *ngIf="i === 33 && teamSummary && teamSummary.games && teamSummary.games.length > 34">
               <td colspan="6">Conference Tournament</td>
+          </tr>
+          <!-- Postseason Row (Applicable for determining if team was in Postseason or not)-->
+          <tr *ngIf="i > 33 && showNITRow(i, game)">
+            <td colspan="6">NIT</td>
           </tr>
       </ng-container>    
       </tbody>

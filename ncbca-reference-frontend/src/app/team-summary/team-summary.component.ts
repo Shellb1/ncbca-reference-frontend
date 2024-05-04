@@ -4,6 +4,7 @@ import { TeamSummaryService } from '../services/team-summary.service';
 import { TeamSummary } from '../model/TeamSummary';
 import { Game } from '../model/Game';
 import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NitGame } from '../model/NitGame';
 
 @Component({
   selector: 'app-team-summary',
@@ -15,6 +16,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 export class TeamSummaryComponent implements OnInit {
 
   teamSummary: TeamSummary | undefined;
+  nitGames: NitGame[] | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private teamSummaryService: TeamSummaryService) {}
 
@@ -24,6 +26,7 @@ export class TeamSummaryComponent implements OnInit {
       const teamName = params['teamName']
       if (year && teamName) {
         this.loadTeamSummary(teamName, year);
+        this.loadNitTeamsForYear(year);
       } else {
         // Handle case when query parameter is not provided
       }
@@ -35,6 +38,14 @@ export class TeamSummaryComponent implements OnInit {
       .subscribe((teamSummary: TeamSummary) => {
         this.teamSummary = teamSummary;
       });
+  }
+
+  loadNitTeamsForYear(year: Number): void {
+    this.teamSummaryService.getNitGames(year)
+      .subscribe((games: NitGame[]) => {
+        this.nitGames = games;
+        console.log(games);
+      })
   }
 
   determineOpponent(game: Game) {
@@ -151,6 +162,29 @@ export class TeamSummaryComponent implements OnInit {
     } else {
       return 'Loss'
     }
+  }
+
+  showNITRow(index: number | undefined, game: Game | undefined): boolean {
+    if (index === undefined) {
+      return false;
+    }
+  
+    if (!this.nitGames || this.nitGames.length === 0) {
+      return false;
+    }
+  
+    let nextGame = this.teamSummary?.games[index + 1];
+    if (!nextGame) {
+      return false;
+    }
+
+    for (let j = 0; j < this.nitGames?.length; j++) {
+      // not a great solution since NIT could expand but will deal with it when we do!
+      if (nextGame.gameId === this.nitGames[j].gameId && j < 8) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
