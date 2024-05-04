@@ -122,14 +122,14 @@ export class TeamSummaryComponent implements OnInit {
   determineConferenceRecordAtGame(game: Game, games: Game[] | undefined) {
     let wins = 0;
     let losses = 0;
-    if (!games || games?.length < 12) {
+    if (!games || games?.length < 1) {
       return '0-0';
     } else if (this.gameIsOutOfConferencePlay(game, games)) {
       return '';
     }
     
     else {
-      for (let i = 13; i < games.length; i++) {
+      for (let i = 12; i < games.length; i++) {
         let gameToLookAt = games[i];
         let teamIdToSearchFor = this.teamSummary?.teamId;
           if (gameToLookAt.winningTeamId === teamIdToSearchFor) {
@@ -159,7 +159,7 @@ export class TeamSummaryComponent implements OnInit {
         break;
       }
     }
-    if (gamesCount < 13 || gamesCount > 33) {
+    if (gamesCount < 12 || gamesCount > 33) {
       return true;
     } else {
       return false;
@@ -238,7 +238,7 @@ export class TeamSummaryComponent implements OnInit {
     for (let j = 0; j < this.ntGames?.length; j++) {
       // not a great solution since NT could expand but will deal with it when we do!
       // also assumes first 16 games have been loaded already
-      if (nextGame.gameId === this.ntGames[j].gameId && j > 8 && j < 32) {
+      if (nextGame.gameId === this.ntGames[j].gameId && j > 7 && j < 23) {
         return true;
       }
     }
