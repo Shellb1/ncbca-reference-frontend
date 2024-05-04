@@ -5,3 +5,13 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+.container {
+    display: flex;
+}
+
+.table-container {
+    flex: 1; /* Adjust as needed */
+    border: 1px solid black; /* for demonstration */
+    padding: 10px; /* for demonstration */
+}

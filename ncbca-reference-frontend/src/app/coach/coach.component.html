@@ -1,18 +1,38 @@
 <h1>Coach Summary for: {{ coachSummaryFor }}</h1>
-<table>
-    <thead>
-      <tr>
-        <th>Year</th>
-        <th>Team</th>
-        <th>Record</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let season of coachSummary?.seasonsCoached">
-        <td class="first-column" (click)="navigateToTeamSummary(season.seasonYear, season.teamName)">{{ season.seasonYear }}</td>
-        <td>{{ season?.teamName }}</td>
-        <td>{{ createRecord(season?.gamesWon || 0, season?.gamesLost || 0) }}</td>
-      </tr>
-    </tbody>
-    
+<div class="container">
+  <div class="table-container">
+    <h1>Seasons Coached</h1>
+    <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Team</th>
+            <th>Record</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let season of coachSummary?.seasonsCoached">
+            <td class="first-column" (click)="navigateToTeamSummary(season.seasonYear, season.teamName)">{{ season.seasonYear }}</td>
+            <td>{{ season?.teamName }}</td>
+            <td>{{ createRecord(season?.gamesWon || 0, season?.gamesLost || 0) }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <div class="table-container">
+    <h2>Record Against Other Coaches</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Coach</th>
+          <th>Record</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>test</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
+</div>
