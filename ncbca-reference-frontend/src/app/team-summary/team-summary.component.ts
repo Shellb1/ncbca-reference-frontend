@@ -197,6 +197,30 @@ export class TeamSummaryComponent implements OnInit {
     return false;
   }
 
+  showFirstSixteenRow(index: number | undefined, game: Game | undefined): boolean {
+    if (index === undefined) {
+      return false;
+    }
+  
+    if (!this.ntGames || this.ntGames.length === 0) {
+      return false;
+    }
+  
+    let nextGame = this.teamSummary?.games[index + 1];
+    if (!nextGame) {
+      return false;
+    }
+
+    for (let j = 0; j < this.ntGames?.length; j++) {
+      // not a great solution since NT could expand but will deal with it when we do!
+      // also assumes first 16 games have been loaded already
+      if (nextGame.gameId === this.ntGames[j].gameId && j < 8) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   showNTRow(index: number | undefined, game: Game | undefined): boolean {
     if (index === undefined) {
       return false;
@@ -213,11 +237,36 @@ export class TeamSummaryComponent implements OnInit {
 
     for (let j = 0; j < this.ntGames?.length; j++) {
       // not a great solution since NT could expand but will deal with it when we do!
-      if (nextGame.gameId === this.ntGames[j].gameId && j < 8) {
+      // also assumes first 16 games have been loaded already
+      if (nextGame.gameId === this.ntGames[j].gameId && j > 8 && j < 32) {
         return true;
       }
     }
     return false;
+  }
+
+  buildFinalRecordFromGames() {
+    if (!this.teamSummary?.games || this.teamSummary.games?.length === 0) {
+      return '0-0';
+    }
+  
+    let games = this.teamSummary.games;
+    let wins = 0;
+    let losses = 0;
+  
+    for (const g of games) {
+
+      let teamIdToSearchFor = this.teamSummary?.teamId;
+
+      if (g.winningTeamId === teamIdToSearchFor) {
+          wins++;
+        } else {
+          losses++;
+        }
+    }
+  
+    return wins + '-' + losses;
+
   }
 }
 

@@ -1,4 +1,4 @@
-<h2 style="padding-bottom:0px;"> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h2>
+<h2 style="padding-bottom:0px;"> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{buildFinalRecordFromGames()}})</h2>
 <h3>Coach: {{teamSummary?.coach}}</h3>
 <div class="table-container">
   <table>
@@ -29,6 +29,10 @@
           <!-- NIT Row if Applicable-->
           <tr *ngIf="i > 33 && showNITRow(i, game)">
             <td colspan="6">NIT</td>
+          </tr>
+          <!-- NT Row if Applicable-->
+          <tr *ngIf="i > 33 && showFirstSixteenRow(i, game)">
+            <td colspan="6">National Tournament (First 16)</td>
           </tr>
           <!-- NT Row if Applicable-->
           <tr *ngIf="i > 33 && showNTRow(i, game)">
