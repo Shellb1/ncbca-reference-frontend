@@ -26,9 +26,13 @@
           <tr *ngIf="i === 33 && teamSummary && teamSummary.games && teamSummary.games.length > 34">
               <td colspan="6">Conference Tournament</td>
           </tr>
-          <!-- Postseason Row (Applicable for determining if team was in Postseason or not)-->
+          <!-- NIT Row if Applicable-->
           <tr *ngIf="i > 33 && showNITRow(i, game)">
             <td colspan="6">NIT</td>
+          </tr>
+          <!-- NT Row if Applicable-->
+          <tr *ngIf="i > 33 && showNTRow(i, game)">
+            <td colspan="6">National Tournament</td>
           </tr>
       </ng-container>    
       </tbody>
