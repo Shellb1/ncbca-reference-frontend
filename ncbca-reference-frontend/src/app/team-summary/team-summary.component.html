@@ -1,0 +1,23 @@
+<h1> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Opponent</th>
+        <th>Result</th>
+        <th>Location</th>
+        <th>Record</th>
+        <th>Conf</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of teamSummary?.games; let i = index;">
+        <td>{{i + 1}}</td>
+        <td class="opponent-column" (click)="navigateToTeamSummary(teamSummary?.seasonYear, determineOpponent(game))">{{ determineOpponent(game) }}</td>
+        <td>{{ determineResult(game) }}</td>
+        <td>{{ determineLocation(game) }}</td>
+        <td>{{ determineRecordAtGame(game, teamSummary?.games) }}</td>
+        <td>{{ determineConferenceRecordAtGame(game, teamSummary?.games) }}</td>
+    </tr>
+    </tbody>
+    </table>

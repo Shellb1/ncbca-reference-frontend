@@ -44,4 +44,8 @@ export class CoachComponent implements OnInit {
     return gamesWon + "-" + gamesLost;
   }
 
+  navigateToTeamSummary(year: Number, teamName: String) {
+      this.router.navigate(['/teamSummary'], { queryParams: { year: year, teamName: teamName} });
+  }
+
 }

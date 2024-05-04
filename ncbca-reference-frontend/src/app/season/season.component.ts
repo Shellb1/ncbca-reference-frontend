@@ -48,4 +48,8 @@ export class SeasonComponent implements OnInit {
   }
   
 
+  navigateToTeamSummary(teamName: String | undefined, year: Number | undefined) {
+    this.router.navigate(['/teamSummary'], { queryParams: { year: year, teamName: teamName} });
+  }
+
 }
