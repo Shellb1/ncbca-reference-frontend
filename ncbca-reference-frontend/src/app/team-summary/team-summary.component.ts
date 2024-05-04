@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TeamSummaryService } from '../services/team-summary.service';
 import { TeamSummary } from '../model/TeamSummary';
 import { Game } from '../model/Game';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-team-summary',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf, NgClass],
   templateUrl: './team-summary.component.html',
   styleUrl: './team-summary.component.scss'
 })
@@ -99,21 +99,58 @@ export class TeamSummaryComponent implements OnInit {
   }
 
   determineConferenceRecordAtGame(game: Game, games: Game[] | undefined) {
+    let wins = 0;
+    let losses = 0;
     if (!games || games?.length < 12) {
       return '0-0';
-    } else {
-      let wins = 0;
-      let losses = 0;
-      for (let i = 13; i < games.length; i++) {
-        
-      }
+    } else if (this.gameIsOutOfConferencePlay(game, games)) {
+      return '';
     }
-    return '';
+    
+    else {
+      for (let i = 13; i < games.length; i++) {
+        let gameToLookAt = games[i];
+        let teamIdToSearchFor = this.teamSummary?.teamId;
+          if (gameToLookAt.winningTeamId === teamIdToSearchFor) {
+              wins++;
+            } else {
+              losses++;
+            }
+          if (gameToLookAt.gameId == game.gameId) {
+            break;
+          }
+        }
+
+    }
+    return wins + '-' + losses;
   }
 
   navigateToTeamSummary(year: Number | undefined, teamName: String | undefined) {
     this.router.navigate(['/teamSummary'], { queryParams: { year: year, teamName: teamName} });
   }
 
+  gameIsOutOfConferencePlay(game: Game, games: Game[]) {
+    let gamesCount = 0;
+    for (let i = 0; i < games.length; i++) {
+      if (games[i].gameId != game.gameId) {
+        gamesCount++;
+      } else {
+        break;
+      }
+    }
+    if (gamesCount < 13 || gamesCount > 33) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  determineResultForStyling(game: Game) {
+    if (game.winningTeamId == this.teamSummary?.teamId) {
+      return 'Win';
+    } else {
+      return 'Loss'
+    }
+  }
 }
+

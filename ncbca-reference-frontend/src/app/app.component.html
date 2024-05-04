@@ -3,6 +3,7 @@
 </div>
   <div class="wrapper">
     <div class="container">
+      <a [routerLink]="['/season']" [queryParams]="{ year: 2078 }" routerLinkActive="active" class="year-link">2078</a>      
       <a [routerLink]="['/season']" [queryParams]="{ year: 2079 }" routerLinkActive="active" class="year-link">2079</a>      
       <router-outlet></router-outlet>
     </div>

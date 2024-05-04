@@ -1,23 +1,32 @@
-<h1> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h1>
-<table>
-    <thead>
-      <tr>
-        <th>Week</th>
-        <th>Opponent</th>
-        <th>Result</th>
-        <th>Location</th>
-        <th>Record</th>
-        <th>Conf</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let game of teamSummary?.games; let i = index;">
-        <td>{{i + 1}}</td>
-        <td class="opponent-column" (click)="navigateToTeamSummary(teamSummary?.seasonYear, determineOpponent(game))">{{ determineOpponent(game) }}</td>
-        <td>{{ determineResult(game) }}</td>
-        <td>{{ determineLocation(game) }}</td>
-        <td>{{ determineRecordAtGame(game, teamSummary?.games) }}</td>
-        <td>{{ determineConferenceRecordAtGame(game, teamSummary?.games) }}</td>
-    </tr>
-    </tbody>
-    </table>
+<h2 style="padding-bottom:0px;"> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h2>
+<h3>Coach: {{teamSummary?.coach}}</h3>
+<div class="table-container">
+  <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Opponent</th>
+          <th>Result</th>
+          <th>Location</th>
+          <th>Record</th>
+          <th>Conf</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let game of teamSummary?.games; let i = index;">
+          <tr [ngClass]="{'won': determineResultForStyling(game) === 'Win', 'lost': determineResultForStyling(game) === 'Loss'}">
+              <td>{{i + 1}}</td>
+              <td class="opponent-column" (click)="navigateToTeamSummary(teamSummary?.seasonYear, determineOpponent(game))">{{ determineOpponent(game) }}</td>
+              <td>{{ determineResult(game) }}</td>
+              <td>{{ determineLocation(game) }}</td>
+              <td>{{ determineRecordAtGame(game, teamSummary?.games) }}</td>
+              <td>{{ determineConferenceRecordAtGame(game, teamSummary?.games) }}</td>
+          </tr>
+          <!-- Add a row when index is 34 -->
+          <tr *ngIf="i === 33 && teamSummary && teamSummary.games && teamSummary.games.length > 34">
+              <td colspan="6">Conference Tournament</td>
+          </tr>
+      </ng-container>    
+      </tbody>
+      </table>
+</div>
