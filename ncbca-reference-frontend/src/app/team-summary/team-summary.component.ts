@@ -4,8 +4,7 @@ import { TeamSummaryService } from '../services/team-summary.service';
 import { TeamSummary } from '../model/TeamSummary';
 import { Game } from '../model/Game';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { NitGame } from '../model/NitGame';
-import { NtGame } from '../model/NtGame';
+import { PostseasonGame } from '../model/PostseasonGame';
 
 @Component({
   selector: 'app-team-summary',
@@ -17,8 +16,7 @@ import { NtGame } from '../model/NtGame';
 export class TeamSummaryComponent implements OnInit {
 
   teamSummary: TeamSummary | undefined;
-  nitGames: NitGame[] | undefined;
-  ntGames: NtGame[] | undefined;
+  postseasonGames: PostseasonGame[] | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private teamSummaryService: TeamSummaryService) {}
 
@@ -28,8 +26,7 @@ export class TeamSummaryComponent implements OnInit {
       const teamName = params['teamName']
       if (year && teamName) {
         this.loadTeamSummary(teamName, year);
-        this.loadNitTeamsForYear(year);
-        this.loadNtTeamsForYear(year);
+        this.loadPostseasonGamesForYearAndTeam(year, teamName);
       } else {
         // Handle case when query parameter is not provided
       }
@@ -43,17 +40,10 @@ export class TeamSummaryComponent implements OnInit {
       });
   }
 
-  loadNitTeamsForYear(year: Number): void {
-    this.teamSummaryService.getNitGames(year)
-      .subscribe((games: NitGame[]) => {
-        this.nitGames = games;
-      })
-  }
-
-  loadNtTeamsForYear(year: Number): void {
-    this.teamSummaryService.getNtGames(year)
-      .subscribe((games: NtGame[]) => {
-        this.ntGames = games;
+  loadPostseasonGamesForYearAndTeam(year: Number, teamName: String): void {
+    this.teamSummaryService.getPostseasonGames(year, teamName)
+      .subscribe((games: PostseasonGame[]) => {
+        this.postseasonGames = games;
         console.log(games);
       })
   }
@@ -174,76 +164,68 @@ export class TeamSummaryComponent implements OnInit {
     }
   }
 
-  showNITRow(index: number | undefined, game: Game | undefined): boolean {
-    if (index === undefined) {
+  showNITRow(index: number | undefined): boolean {
+    if (!index || !this.postseasonGames || this.postseasonGames.length === 0) {
       return false;
     }
   
-    if (!this.nitGames || this.nitGames.length === 0) {
-      return false;
-    }
-  
-    let nextGame = this.teamSummary?.games[index + 1];
+    let nextGame = this.teamSummary?.games[index];
     if (!nextGame) {
       return false;
     }
-
-    for (let j = 0; j < this.nitGames?.length; j++) {
-      // not a great solution since NIT could expand but will deal with it when we do!
-      if (nextGame.gameId === this.nitGames[j].gameId && j < 8) {
-        return true;
-      }
+  
+    // Find the corresponding postseason game
+    let firstPostseasonGame = this.postseasonGames[0];
+    
+    if (nextGame.gameId == firstPostseasonGame.gameId && firstPostseasonGame.gameType === 'NIT') {
+      return true;
     }
     return false;
   }
-
-  showFirstSixteenRow(index: number | undefined, game: Game | undefined): boolean {
-    if (index === undefined) {
+  
+  showFirstSixteenRow(index: number | undefined): boolean {
+    if (!index || !this.postseasonGames || this.postseasonGames.length === 0) {
       return false;
     }
   
-    if (!this.ntGames || this.ntGames.length === 0) {
-      return false;
-    }
-  
-    let nextGame = this.teamSummary?.games[index + 1];
+    let nextGame = this.teamSummary?.games[index];
     if (!nextGame) {
       return false;
     }
+  
+    // Find the corresponding postseason game
+    let firstPostseasonGame = this.postseasonGames[0];
 
-    for (let j = 0; j < this.ntGames?.length; j++) {
-      // not a great solution since NT could expand but will deal with it when we do!
-      // also assumes first 16 games have been loaded already
-      if (nextGame.gameId === this.ntGames[j].gameId && j < 8) {
-        return true;
-      }
+    if (nextGame.gameId == firstPostseasonGame.gameId && firstPostseasonGame.gameType === 'FIRST_SIXTEEN') {
+      return true;
     }
     return false;
   }
-
-  showNTRow(index: number | undefined, game: Game | undefined): boolean {
-    if (index === undefined) {
+  
+  showNTRow(index: number | undefined): boolean {
+    if (!index || !this.postseasonGames || this.postseasonGames.length === 0) {
       return false;
     }
   
-    if (!this.ntGames || this.ntGames.length === 0) {
-      return false;
-    }
-  
-    let nextGame = this.teamSummary?.games[index + 1];
+    let nextGame = this.teamSummary?.games[index];
     if (!nextGame) {
       return false;
     }
-
-    for (let j = 0; j < this.ntGames?.length; j++) {
-      // not a great solution since NT could expand but will deal with it when we do!
-      // also assumes first 16 games have been loaded already
-      if (nextGame.gameId === this.ntGames[j].gameId && j > 7 && j < 23) {
+    let firstPostseasonGame = this.postseasonGames[0];
+    let secondPostseasonGame = null;
+    if (this.postseasonGames.length > 1) {
+      secondPostseasonGame = this.postseasonGames[1];
+      if (firstPostseasonGame.gameType == "FIRST_SIXTEEN" && secondPostseasonGame.gameType == "MAIN_FIELD" && nextGame.gameId == secondPostseasonGame.gameId) {
         return true;
       }
     }
+    if (firstPostseasonGame.gameId == nextGame.gameId && firstPostseasonGame.gameType == "MAIN_FIELD") {
+      return true;
+    }
     return false;
   }
+  
+  
 
   buildFinalRecordFromGames() {
     if (!this.teamSummary?.games || this.teamSummary.games?.length === 0) {

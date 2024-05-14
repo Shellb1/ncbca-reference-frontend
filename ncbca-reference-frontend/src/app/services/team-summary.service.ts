@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TeamSummary } from '../model/TeamSummary';
-import {  NtGame } from '../model/NtGame';
-import { NitGame } from '../model/NitGame';
+import { PostseasonGame } from '../model/PostseasonGame';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +15,8 @@ export class TeamSummaryService {
     return this.http.get<TeamSummary>(`/ncbca-reference-backend/teamSummary?teamName=${teamName}&year=${year}`);
   }
 
-  getNitGames(year: Number): Observable<NitGame[]> {
-    return this.http.get<NitGame[]>(`/ncbca-reference-backend/getNitGamesForSeason?season=${year}`);
+  getPostseasonGames(year: Number, teamName: String): Observable<PostseasonGame[]> {
+    return this.http.get<PostseasonGame[]>(`/ncbca-reference-backend/getPostseasonGamesForTeam?season=${year}&teamName=${teamName}`);
   }
-    
-  getNtGames(year: Number): Observable<NtGame[]> {
-    return this.http.get<NtGame[]>(`/ncbca-reference-backend/getNtGamesForSeason?season=${year}`);
-  }
-
+  
 }

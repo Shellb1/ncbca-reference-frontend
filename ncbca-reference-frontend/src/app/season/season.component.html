@@ -10,7 +10,7 @@
 <tbody>
   <tr *ngFor="let season of seasons">
     <td class="coach-link" (click)="navigateToTeamSummary(season.teamName, season.seasonYear)">{{ season.teamName }}</td>
-    <td>{{ createRecord(season.gamesWon, season.gamesLost) }}</td>
+    <td>{{season.gamesWon}}-{{season.gamesLost}}</td>
     <td>
       <a (click)="navigateToCoachSummary(season.coach)" class="coach-link">{{ season.coach }}</a>
     </td>
