@@ -1,5 +1,6 @@
 <h2 style="padding-bottom:0px;"> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h2>
-<h3>Coach: {{teamSummary?.coach}}</h3>
+<h3>Coach: <a (click)="navigateToCoachSummary(teamSummary?.coach)" class="coach-link">
+  {{teamSummary?.coach}}</a></h3>
 <div class="table-container">
   <table>
       <thead>

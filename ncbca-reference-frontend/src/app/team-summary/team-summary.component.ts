@@ -250,5 +250,9 @@ export class TeamSummaryComponent implements OnInit {
     return wins + '-' + losses;
 
   }
+
+  navigateToCoachSummary(coach: string | undefined) {
+    this.router.navigate(['/coachSummary'], { queryParams: { coach: coach } });
+  }
 }
 
