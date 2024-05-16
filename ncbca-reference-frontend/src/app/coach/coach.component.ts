@@ -35,7 +35,6 @@ export class CoachComponent implements OnInit {
     this.coachesService.getCoachSummary(coach)
       .subscribe((coachSummary: CoachSummary) => {
         this.coachSummary = coachSummary;
-        console.log(coachSummary);
       });
   }
 
