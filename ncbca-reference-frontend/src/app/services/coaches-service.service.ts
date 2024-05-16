@@ -15,5 +15,9 @@ export class CoachesService {
   getCoachSummary(coach: string): Observable<CoachSummary> {
     return this.http.get<CoachSummary>(`/ncbca-reference-backend/coachSummary?coachName=${coach}`);
   }
+
+  getAllTimeRecordVersusOtherCoaches(coach: string): Observable<Map<String, String>> {
+    return this.http.get<Map<String, String>>(`/ncbca-reference-backend/allTimeRecordVersusOtherCoaches?coachName=${coach}`);
+  }
   
 }

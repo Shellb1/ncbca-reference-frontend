@@ -29,10 +29,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>test</td>
+        <tr *ngFor="let coach of coachRecordMap | keyvalue">
+          <td>
+            <a class="first-column" (click)="navigateToCoachSummary(coach.key)">{{ coach.key }}</a></td>
+          <td>{{ coach.value }}</td>
         </tr>
-      </tbody>
+      </tbody>        
     </table>
   </div>
   <br/>
