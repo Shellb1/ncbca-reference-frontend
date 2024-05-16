@@ -15,3 +15,14 @@
     border: 1px solid black; /* for demonstration */
     padding: 10px; /* for demonstration */
 }
+
+.draft-picks-container {
+    flex: 1;
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 10px; /* Add margin-top to create space between the table and the "test" div */
+}
+
+.draft-picks-table {
+    margin: 0 auto;
+}

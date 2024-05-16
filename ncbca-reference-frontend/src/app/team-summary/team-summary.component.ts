@@ -44,7 +44,6 @@ export class TeamSummaryComponent implements OnInit {
     this.teamSummaryService.getPostseasonGames(year, teamName)
       .subscribe((games: PostseasonGame[]) => {
         this.postseasonGames = games;
-        console.log(games);
       })
   }
 
@@ -213,9 +212,9 @@ export class TeamSummaryComponent implements OnInit {
     }
     let firstPostseasonGame = this.postseasonGames[0];
     let secondPostseasonGame = null;
-    if (this.postseasonGames.length > 1) {
+    if (this.postseasonGames.length > 1 && firstPostseasonGame.gameType == "FIRST_SIXTEEN") {
       secondPostseasonGame = this.postseasonGames[1];
-      if (firstPostseasonGame.gameType == "FIRST_SIXTEEN" && secondPostseasonGame.gameType == "MAIN_FIELD" && nextGame.gameId == secondPostseasonGame.gameId) {
+      if (nextGame.gameId == secondPostseasonGame.gameId) {
         return true;
       }
     }

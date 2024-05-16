@@ -18,8 +18,8 @@ ssh -i $PRIVATE_KEY ubuntu@$EC2_HOST << 'EOF'
     echo "Emptying /var/www/ncbca-reference-frontend directory..."
     sudo rm -rf /var/www/ncbca-reference-frontend/*
     echo "Moving UI to the correct directory..."
-    mv ~/ncbca-reference-frontend/* /var/www/ncbca-reference-frontend/
+    sudo mv ~/ncbca-reference-frontend/* /var/www/ncbca-reference-frontend/
     echo "Cleaning up..."
-    rm -rf ~/ncbca-reference-frontend/*
+    sudo rm -rf ~/ncbca-reference-frontend/*
     echo "UI deployed successfully."
 EOF
