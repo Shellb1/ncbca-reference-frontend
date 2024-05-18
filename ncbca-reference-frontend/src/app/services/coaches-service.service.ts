@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Season } from '../model/Season';
 import { CoachSummary } from '../model/CoachSummary';
+import { DraftPick } from '../model/DraftPick';
 
 
 @Injectable({
@@ -18,6 +18,10 @@ export class CoachesService {
 
   getAllTimeRecordVersusOtherCoaches(coach: string): Observable<Map<String, String>> {
     return this.http.get<Map<String, String>>(`/ncbca-reference-backend/allTimeRecordVersusOtherCoaches?coachName=${coach}`);
+  }
+
+  getDraftPicks(coach: string): Observable<DraftPick[]> {
+    return this.http.get<DraftPick[]>(`/ncbca-reference-backend/getDraftPicks?coachName=${coach}`);
   }
   
 }

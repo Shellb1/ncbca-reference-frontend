@@ -40,20 +40,24 @@
   <br/>
 </div>
 <div class="draft-picks-container">
-  <h2>Draft Picks (Count)</h2>
-  <table class="draft-picks-table">
+  <h2>Draft Picks</h2>
+  <table class="draft-picks-table" *ngIf="draftPicks?.length != 0">
       <thead>
         <tr>
-          <th>Year</th>
-          <th>Player</th>
-          <th>Draft Pick</th>
-          <th>team</th>
+          <th style="padding-right: 20px;">Year</th>
+          <th style="padding-right: 20px;">Player</th>
+          <th style="padding-right: 20px;">Pick</th>
+          <th style="padding-right: 20px;">Team</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>test</td>
+        <tr *ngFor="let pick of draftPicks">
+          <td style="padding-right: 20px;">{{ pick.season }}</td>
+          <td style="padding-right: 20px;">{{ pick.playerName }}</td>
+          <td style="padding-right: 20px;">{{ pick.round }}:{{ pick.pick }}</td>
+          <td style="padding-right: 20px;"><a (click)="navigateToTeamSummary(pick?.season, pick?.collegeTeamName)" class="first-column">{{ pick.collegeTeamName }}</a></td>
         </tr>
       </tbody>
     </table>
+    <h4 *ngIf="draftPicks?.length == 0">No Draft Picks Found</h4>
 </div>

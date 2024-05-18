@@ -2,12 +2,13 @@ import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CoachesService } from '../services/coaches-service.service';
 import { CoachSummary } from '../model/CoachSummary';
-import { NgFor, KeyValuePipe} from '@angular/common';
+import { NgFor, KeyValuePipe, NgIf} from '@angular/common';
+import { DraftPick } from '../model/DraftPick';
 
 @Component({
   selector: 'app-coach',
   standalone: true,
-  imports: [NgFor, RouterOutlet, RouterModule, KeyValuePipe],
+  imports: [NgFor, RouterOutlet, RouterModule, KeyValuePipe, NgIf],
   templateUrl: './coach.component.html',
   styleUrl: './coach.component.scss'
 })
@@ -16,6 +17,7 @@ export class CoachComponent implements OnInit {
   coachSummary: CoachSummary | undefined;
   coachSummaryFor: String | null | undefined;
   coachRecordMap: Map<String, String> | undefined;
+  draftPicks: DraftPick[] | undefined;
 
   constructor(private route: ActivatedRoute, private coachesService: CoachesService, private router: Router) {
 
@@ -27,6 +29,7 @@ export class CoachComponent implements OnInit {
       if (coach) {
         this.loadCoachSummary(coach);
         this.loadCoachRecordVersusOtherCoaches(coach);
+        this.loadDraftPicks(coach);
       } else {
         // Handle case when query parameter is not provided
       }
@@ -47,12 +50,32 @@ export class CoachComponent implements OnInit {
       });
   }
 
+  loadDraftPicks(coach: string): void {
+    this.coachesService.getDraftPicks(coach)
+      .subscribe((draftPicks: DraftPick[]) => {
+      draftPicks.sort((a, b) => {
+        // Sort by season
+        if (a.season !== b.season) {
+          return a.season - b.season;
+        }
+        // If season is same, sort by round
+        if (a.round !== b.round) {
+          return a.round - b.round;
+        }
+        // If round is same, sort by pick
+        return a.pick - b.pick;
+      });
+
+      // Assign sorted draft picks to the property
+      this.draftPicks = draftPicks;
+      });
+  }
 
   createRecord(gamesWon: Number, gamesLost: Number): string {
     return gamesWon + "-" + gamesLost;
   }
 
-  navigateToTeamSummary(year: Number, teamName: String) {
+  navigateToTeamSummary(year: Number | undefined, teamName: String | undefined) {
       this.router.navigate(['/teamSummary'], { queryParams: { year: year, teamName: teamName} });
   }
   

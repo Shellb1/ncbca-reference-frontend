@@ -14,6 +14,7 @@ import { NgFor } from '@angular/common';
 export class SeasonComponent implements OnInit { 
 
   seasons: Season[] = [];
+  season: number | undefined;
 
   constructor(private seasonsService: SeasonsServiceService,
     private route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class SeasonComponent implements OnInit {
       const year = params['year']; // Assuming the query parameter is named 'year'
       if (year) {
         this.loadSeasons(year);
+        this.season = year;
       } else {
         // Handle case when query parameter is not provided
       }

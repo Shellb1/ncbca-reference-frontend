@@ -1,0 +1,21 @@
+<p style="padding-top:10px;">Viewing Draft Summary For: {{season}}</p>
+<table class="draft-picks-table">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Pick</th>
+        <th>Team</th>
+        <th>Coach</th>
+        <th>Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pick of draftPicks">
+        <td>{{ pick.playerName }}</td>
+        <td>{{ pick.round }}:{{ pick.pick }}</td>
+        <td><a (click)="navigateToTeamSummary(season, pick?.collegeTeamName)" class="coach-link">{{ pick.collegeTeamName }}</a></td>
+        <td><a (click)="navigateToCoachSummary(pick.coachName)" class="coach-link">{{ pick.coachName }}</a></td>
+        <td>{{pick.position}}</td>
+      </tr>
+    </tbody>
+  </table>
