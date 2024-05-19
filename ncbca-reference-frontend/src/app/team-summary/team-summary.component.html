@@ -1,6 +1,9 @@
 <h2 style="padding-bottom:0px;"> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h2>
 <h3>Coach: <a (click)="navigateToCoachSummary(teamSummary?.coach)" class="coach-link">
   {{teamSummary?.coach}}</a></h3>
+  <a [routerLink]="['/teamSummary']" [queryParams]="{ year: 2078, teamName: teamSummary?.teamName }"routerLinkActive="active" class="coach-link">2078</a> 
+  <a [routerLink]="['/teamSummary']" [queryParams]="{ year: 2079, teamName: teamSummary?.teamName }" routerLinkActive="active" class="coach-link">2079</a> 
+
 <div class="table-container">
   <table>
       <thead>

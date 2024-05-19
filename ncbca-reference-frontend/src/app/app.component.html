@@ -17,36 +17,23 @@
       <div class="line-break"></div>
     </div> 
 
-    <h3 style="margin-bottom: 0px; font-size:22px;">Coach Summaries</h3>
-    <div class="container">
-      <a [routerLink]="['/season']" [queryParams]="{ year: 2078 }" routerLinkActive="active" class="year-link">2078</a>      
-      <a [routerLink]="['/season']" [queryParams]="{ year: 2079 }" routerLinkActive="active" class="year-link">2079</a> 
-    </div> 
-  </div>
-
-  <div class="section-container">
-    <div class="line-container">
-      <div class="line-break"></div>
-      <div class="line-break"></div>
-    </div> 
-
-    <h3 style="margin-bottom: 0px; font-size:22px;">Team Summaries</h3>
-    <div class="container">
-      <!-- <a [routerLink]="['/draftSummary']" [queryParams]="{ year: 2078 }" routerLinkActive="active" class="year-link">2078</a>  -->
-      <!-- <a [routerLink]="['/draftSummary']" [queryParams]="{ year: 2079 }" routerLinkActive="active" class="year-link">2079</a>  -->
-    </div> 
-  </div>
-
-  <div class="section-container">
-    <div class="line-container">
-      <div class="line-break"></div>
-      <div class="line-break"></div>
-    </div> 
-
     <h3 style="margin-bottom: 0px; font-size:22px;">Draft Summaries</h3>
     <div class="container">
       <a [routerLink]="['/draftSummary']" [queryParams]="{ year: 2078 }" routerLinkActive="active" class="year-link">2078</a> 
       <a [routerLink]="['/draftSummary']" [queryParams]="{ year: 2079 }" routerLinkActive="active" class="year-link">2079</a> 
+    </div> 
+  </div>
+
+  <div class="section-container">
+    <div class="line-container">
+      <div class="line-break"></div>
+      <div class="line-break"></div>
+    </div> 
+
+    <h3 style="margin-bottom: 0px; font-size:22px;">All Time Summaries</h3>
+    <div class="container">
+      <a [routerLink]="['/allTimeTeamSummary']" routerLinkActive="active" class="year-link">Teams</a> 
+      <a [routerLink]="['/allTimeCoachSummary']" routerLinkActive="active" class="year-link">Coaches</a> 
     </div> 
   </div>
   

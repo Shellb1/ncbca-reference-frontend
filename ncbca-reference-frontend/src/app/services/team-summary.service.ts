@@ -18,5 +18,6 @@ export class TeamSummaryService {
   getPostseasonGames(year: Number, teamName: String): Observable<PostseasonGame[]> {
     return this.http.get<PostseasonGame[]>(`/ncbca-reference-backend/getPostseasonGamesForTeam?season=${year}&teamName=${teamName}`);
   }
+
   
 }

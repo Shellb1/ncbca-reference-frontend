@@ -1,0 +1,18 @@
+<div class="table-container">
+    <table>
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Conference</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teams" >
+        <td class="coach-link" (click)="navigateToAllTimeTeamSummary(team.name)">{{ team.name }}</td>
+        <td>{{team.conferenceName}}</td>
+        <td [ngClass]="{ 'inactive-team': !team.active }"> {{team.active}}</td>
+      </tr>
+    </tbody>
+    
+    </table>

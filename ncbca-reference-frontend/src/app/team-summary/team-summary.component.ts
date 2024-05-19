@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TeamSummaryService } from '../services/team-summary.service';
 import { TeamSummary } from '../model/TeamSummary';
 import { Game } from '../model/Game';
@@ -9,7 +9,7 @@ import { PostseasonGame } from '../model/PostseasonGame';
 @Component({
   selector: 'app-team-summary',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass],
+  imports: [NgFor, NgIf, NgClass, RouterModule],
   templateUrl: './team-summary.component.html',
   styleUrl: './team-summary.component.scss'
 })
