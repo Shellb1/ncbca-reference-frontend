@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Coach } from '../model/Coach';
 import { NgClass, NgFor } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AllCoachesService } from '../services/all-coaches-service';
+import { CoachDirectoryService } from '../services/coach-directory-service';
 
 @Component({
-  selector: 'app-all-time-coach-summary',
+  selector: 'app-coach-directory',
   standalone: true,
   imports: [NgFor, NgClass],
-  templateUrl: './all-time-coach-summary.component.html',
-  styleUrl: './all-time-coach-summary.component.scss'
+  templateUrl: './coach-directory.component.html',
+  styleUrl: './coach-directory.component.scss'
 })
-export class AllTimeCoachSummaryComponent implements OnInit {
+export class CoachDirectoryComponent implements OnInit {
 
   coaches: Coach[] = []
 
-  public constructor(private route: ActivatedRoute, private coachesService: AllCoachesService, private router: Router) {}
+  public constructor(private route: ActivatedRoute, private coachesService: CoachDirectoryService, private router: Router) {}
 
   ngOnInit(): void {
 

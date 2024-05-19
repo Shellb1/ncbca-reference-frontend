@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 import { SeasonComponent } from './season/season.component';
 import { CoachComponent } from './coach/coach.component';
 import { DraftSummaryComponent } from './draft-summary/draft-summary.component';
-import { AllTimeTeamSummaryComponent } from './all-time-team-summary/all-time-team-summary.component';
-import { AllTimeCoachSummaryComponent } from './all-time-coach-summary/all-time-coach-summary.component';
+import { CoachDirectoryComponent } from './coach-directory/coach-directory.component';
 import { TeamSeasonSummaryComponent } from './team-season-summary/team-season-summary.component';
+import { TeamDirectoryComponent } from './team-directory/team-directory.component';
 
 export const routes: Routes = [
     {
@@ -20,9 +20,9 @@ export const routes: Routes = [
         path: 'draftSummary', component: DraftSummaryComponent
     },
     {
-        path: 'allTimeTeamSummary', component: AllTimeTeamSummaryComponent
+        path: 'teamDirectory', component: TeamDirectoryComponent
     },
     {
-        path: 'allTimeCoachSummary', component: AllTimeCoachSummaryComponent
+        path: 'coachDirectory', component: CoachDirectoryComponent
     }
 ];

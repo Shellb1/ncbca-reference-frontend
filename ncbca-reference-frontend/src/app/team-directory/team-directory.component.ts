@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from '../model/Team';
-import { AllTeamsService } from '../services/all-teams-service';
+import { TeamDirectoryService } from '../services/team-directory-service';
 import { NgClass, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-all-time-team-summary',
+  selector: 'app-team-directory-component',
   standalone: true,
   imports: [NgFor, NgClass],
-  templateUrl: './all-time-team-summary.component.html',
-  styleUrl: './all-time-team-summary.component.scss'
+  templateUrl: './team-directory.component.html',
+  styleUrl: './team-directory.component.scss'
 })
-export class AllTimeTeamSummaryComponent implements OnInit {
+export class TeamDirectoryComponent implements OnInit {
 
   teams: Team[] = [];
 
-  public constructor(private route: ActivatedRoute, private teamsService: AllTeamsService, private router: Router) {}
+  public constructor(private route: ActivatedRoute, private teamsService: TeamDirectoryService, private router: Router) {}
 
 
   ngOnInit(): void {

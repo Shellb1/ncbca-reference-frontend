@@ -1,16 +1,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Team } from "../model/Team";
+import { Coach } from "../model/Coach";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AllTeamsService {
+export class CoachDirectoryService {
   
   constructor(private http: HttpClient) {}
 
-    getAllTeams(): Observable<Team[]> {
-        return this.http.get<Team[]>(`/ncbca-reference-backend/allTeams`);
+    getAllCoaches(): Observable<Coach[]> {
+        return this.http.get<Coach[]>(`/ncbca-reference-backend/allCoaches`);
     }
 }
