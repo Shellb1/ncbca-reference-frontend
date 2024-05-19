@@ -4,6 +4,7 @@ import { CoachComponent } from './coach/coach.component';
 import { TeamSummaryComponent } from './team-summary/team-summary.component';
 import { DraftSummaryComponent } from './draft-summary/draft-summary.component';
 import { AllTimeTeamSummaryComponent } from './all-time-team-summary/all-time-team-summary.component';
+import { AllTimeCoachSummaryComponent } from './all-time-coach-summary/all-time-coach-summary.component';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,8 @@ export const routes: Routes = [
     },
     {
         path: 'allTimeTeamSummary', component: AllTimeTeamSummaryComponent
+    },
+    {
+        path: 'allTimeCoachSummary', component: AllTimeCoachSummaryComponent
     }
 ];

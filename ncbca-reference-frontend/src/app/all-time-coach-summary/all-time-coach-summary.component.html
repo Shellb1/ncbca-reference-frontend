@@ -1,0 +1,22 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Coach</th>
+        <th>Current Team</th>
+        <th>Active</th>
+        <th>Starting Season</th>
+        <th>Ending Season</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coach of coaches">
+        <td class="coach-link" (click)="navigateToAllTimeCoachSummary(coach.coachName)">{{ coach.coachName }}</td>
+        <td class="coach-link" (click)="navigateToAllTimeTeamSummary(coach.currentTeam)">{{coach.currentTeam}}</td>
+        <td>{{coach.active}}</td>
+        <td>{{coach.startSeason}}</td>
+        <td>{{coach.endSeason}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
