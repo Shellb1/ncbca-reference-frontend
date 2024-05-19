@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TeamSummary } from '../model/TeamSummary';
+import { TeamSeasonSummary } from '../model/TeamSeasonSummary';
 import { PostseasonGame } from '../model/PostseasonGame';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamSummaryService {
+export class TeamSeasonSummaryService {
   
   constructor(private http: HttpClient) {}
 
-  getTeamSummary(teamName: String, year: Number): Observable<TeamSummary> {
-    return this.http.get<TeamSummary>(`/ncbca-reference-backend/teamSummary?teamName=${teamName}&year=${year}`);
+  getTeamSeasonSummary(teamName: String, year: Number): Observable<TeamSeasonSummary> {
+    return this.http.get<TeamSeasonSummary>(`/ncbca-reference-backend/teamSeasonSummary?teamName=${teamName}&year=${year}`);
   }
 
   getPostseasonGames(year: Number, teamName: String): Observable<PostseasonGame[]> {

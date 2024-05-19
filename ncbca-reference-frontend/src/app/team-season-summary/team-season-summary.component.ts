@@ -1,31 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { TeamSummaryService } from '../services/team-summary.service';
-import { TeamSummary } from '../model/TeamSummary';
 import { Game } from '../model/Game';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { PostseasonGame } from '../model/PostseasonGame';
+import { TeamSeasonSummary } from '../model/TeamSeasonSummary';
+import { TeamSeasonSummaryService } from '../services/team-season-summary.service';
 
 @Component({
-  selector: 'app-team-summary',
+  selector: 'app-team-season-summary',
   standalone: true,
   imports: [NgFor, NgIf, NgClass, RouterModule],
-  templateUrl: './team-summary.component.html',
-  styleUrl: './team-summary.component.scss'
+  templateUrl: './team-season-summary.component.html',
+  styleUrl: './team-season-summary.component.scss'
 })
-export class TeamSummaryComponent implements OnInit {
+export class TeamSeasonSummaryComponent implements OnInit {
 
-  teamSummary: TeamSummary | undefined;
+  teamSeasonSummary: TeamSeasonSummary | undefined;
   postseasonGames: PostseasonGame[] | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router, private teamSummaryService: TeamSummaryService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private teamSummaryService: TeamSeasonSummaryService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const year = params['year']; // Assuming the query parameter is named 'year'
       const teamName = params['teamName']
       if (year && teamName) {
-        this.loadTeamSummary(teamName, year);
+        this.loadTeamSeasonSummary(teamName, year);
         this.loadPostseasonGamesForYearAndTeam(year, teamName);
       } else {
         // Handle case when query parameter is not provided
@@ -33,10 +33,10 @@ export class TeamSummaryComponent implements OnInit {
     });
   }
 
-  loadTeamSummary(teamName: string, year: Number): void {
-    this.teamSummaryService.getTeamSummary(teamName, year)
-      .subscribe((teamSummary: TeamSummary) => {
-        this.teamSummary = teamSummary;
+  loadTeamSeasonSummary(teamName: string, year: Number): void {
+    this.teamSummaryService.getTeamSeasonSummary(teamName, year)
+      .subscribe((teamSeasonSummary: TeamSeasonSummary) => {
+        this.teamSeasonSummary = teamSeasonSummary;
       });
   }
 
@@ -48,7 +48,7 @@ export class TeamSummaryComponent implements OnInit {
   }
 
   determineOpponent(game: Game) {
-    let teamName = this.teamSummary?.teamName;
+    let teamName = this.teamSeasonSummary?.teamName;
     if (game.awayTeamName == teamName) {
       return game.homeTeamName;
     } else {
@@ -57,7 +57,7 @@ export class TeamSummaryComponent implements OnInit {
   }
 
   determineResult(game: Game) {
-    let teamName = this.teamSummary?.teamName;
+    let teamName = this.teamSeasonSummary?.teamName;
     let result;
     if (game.winningTeamName == teamName) {
       result = 'W, ' + game.winningTeamScore + '-' + game.losingTeamScore;
@@ -69,7 +69,7 @@ export class TeamSummaryComponent implements OnInit {
   }
 
   determineLocation(game: Game) {
-    let teamName = this.teamSummary?.teamName;
+    let teamName = this.teamSeasonSummary?.teamName;
     if (!game.neutralSite) {
         if (game.homeTeamName == teamName) {
           return 'Home';
@@ -95,7 +95,7 @@ export class TeamSummaryComponent implements OnInit {
         break; // Stop iterating once we reach the given game
       }
 
-      let teamIdToSearchFor = this.teamSummary?.teamId;
+      let teamIdToSearchFor = this.teamSeasonSummary?.teamId;
 
       if (g.winningTeamId === teamIdToSearchFor) {
           wins++;
@@ -120,7 +120,7 @@ export class TeamSummaryComponent implements OnInit {
     else {
       for (let i = 12; i < games.length; i++) {
         let gameToLookAt = games[i];
-        let teamIdToSearchFor = this.teamSummary?.teamId;
+        let teamIdToSearchFor = this.teamSeasonSummary?.teamId;
           if (gameToLookAt.winningTeamId === teamIdToSearchFor) {
               wins++;
             } else {
@@ -135,8 +135,8 @@ export class TeamSummaryComponent implements OnInit {
     return wins + '-' + losses;
   }
 
-  navigateToTeamSummary(year: Number | undefined, teamName: String | undefined) {
-    this.router.navigate(['/teamSummary'], { queryParams: { year: year, teamName: teamName} });
+  navigateToTeamSeasonSummary(year: Number | undefined, teamName: String | undefined) {
+    this.router.navigate(['/teamSeasonSummary'], { queryParams: { year: year, teamName: teamName} });
   }
 
   gameIsOutOfConferencePlay(game: Game, games: Game[]) {
@@ -156,7 +156,7 @@ export class TeamSummaryComponent implements OnInit {
   }
 
   determineResultForStyling(game: Game) {
-    if (game.winningTeamId == this.teamSummary?.teamId) {
+    if (game.winningTeamId == this.teamSeasonSummary?.teamId) {
       return 'Win';
     } else {
       return 'Loss'
@@ -168,7 +168,7 @@ export class TeamSummaryComponent implements OnInit {
       return false;
     }
   
-    let nextGame = this.teamSummary?.games[index];
+    let nextGame = this.teamSeasonSummary?.games[index];
     if (!nextGame) {
       return false;
     }
@@ -187,7 +187,7 @@ export class TeamSummaryComponent implements OnInit {
       return false;
     }
   
-    let nextGame = this.teamSummary?.games[index];
+    let nextGame = this.teamSeasonSummary?.games[index];
     if (!nextGame) {
       return false;
     }
@@ -206,7 +206,7 @@ export class TeamSummaryComponent implements OnInit {
       return false;
     }
   
-    let nextGame = this.teamSummary?.games[index];
+    let nextGame = this.teamSeasonSummary?.games[index];
     if (!nextGame) {
       return false;
     }
@@ -227,17 +227,17 @@ export class TeamSummaryComponent implements OnInit {
   
 
   buildFinalRecordFromGames() {
-    if (!this.teamSummary?.games || this.teamSummary.games?.length === 0) {
+    if (!this.teamSeasonSummary?.games || this.teamSeasonSummary.games?.length === 0) {
       return '0-0';
     }
   
-    let games = this.teamSummary.games;
+    let games = this.teamSeasonSummary.games;
     let wins = 0;
     let losses = 0;
   
     for (const g of games) {
 
-      let teamIdToSearchFor = this.teamSummary?.teamId;
+      let teamIdToSearchFor = this.teamSeasonSummary?.teamId;
 
       if (g.winningTeamId === teamIdToSearchFor) {
           wins++;

@@ -1,6 +1,6 @@
 import { Game } from "./Game";
 
-export class TeamSummary {
+export class TeamSeasonSummary {
     teamId: number;
     teamName: string;
     gamesWon: number;

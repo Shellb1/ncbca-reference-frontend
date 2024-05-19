@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let coach of coaches">
-        <td class="coach-link" (click)="navigateToAllTimeCoachSummary(coach.coachName)">{{ coach.coachName }}</td>
+        <td class="coach-link" (click)="navigateToCoachSummary(coach.coachName)">{{ coach.coachName }}</td>
         <td class="coach-link" (click)="navigateToAllTimeTeamSummary(coach.currentTeam)">{{coach.currentTeam}}</td>
         <td>{{coach.active}}</td>
         <td>{{coach.startSeason}}</td>

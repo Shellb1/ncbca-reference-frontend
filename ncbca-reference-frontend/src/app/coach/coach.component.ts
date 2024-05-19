@@ -74,7 +74,7 @@ export class CoachComponent implements OnInit {
   }
 
   navigateToTeamSummary(year: Number | undefined, teamName: String | undefined) {
-      this.router.navigate(['/teamSummary'], { queryParams: { year: year, teamName: teamName} });
+      this.router.navigate(['/teamSeasonSummary'], { queryParams: { year: year, teamName: teamName} });
   }
   
   navigateToCoachSummary(coach: String) {

@@ -1,8 +1,8 @@
-<h2 style="padding-bottom:0px;"> {{teamSummary?.seasonYear}} {{teamSummary?.teamName}} ({{teamSummary?.gamesWon}}-{{teamSummary?.gamesLost}})</h2>
-<h3>Coach: <a (click)="navigateToCoachSummary(teamSummary?.coach)" class="coach-link">
-  {{teamSummary?.coach}}</a></h3>
-  <a [routerLink]="['/teamSummary']" [queryParams]="{ year: 2078, teamName: teamSummary?.teamName }"routerLinkActive="active" class="coach-link">2078</a> 
-  <a [routerLink]="['/teamSummary']" [queryParams]="{ year: 2079, teamName: teamSummary?.teamName }" routerLinkActive="active" class="coach-link">2079</a> 
+<h2 style="padding-bottom:0px;"> {{teamSeasonSummary?.seasonYear}} {{teamSeasonSummary?.teamName}} ({{teamSeasonSummary?.gamesWon}}-{{teamSeasonSummary?.gamesLost}})</h2>
+<h3>Coach: <a (click)="navigateToCoachSummary(teamSeasonSummary?.coach)" class="coach-link">
+  {{teamSeasonSummary?.coach}}</a></h3>
+  <a [routerLink]="['/teamSeasonSummary']" [queryParams]="{ year: 2078, teamName: teamSeasonSummary?.teamName }"routerLinkActive="active" class="coach-link">2078</a> 
+  <a [routerLink]="['/teamSeasonSummary']" [queryParams]="{ year: 2079, teamName: teamSeasonSummary?.teamName }" routerLinkActive="active" class="coach-link">2079</a> 
 
 <div class="table-container">
   <table>
@@ -17,17 +17,17 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let game of teamSummary?.games; let i = index;">
+        <ng-container *ngFor="let game of teamSeasonSummary?.games; let i = index;">
           <tr [ngClass]="{'won': determineResultForStyling(game) === 'Win', 'lost': determineResultForStyling(game) === 'Loss'}">
               <td>{{i + 1}}</td>
-              <td class="opponent-column" (click)="navigateToTeamSummary(teamSummary?.seasonYear, determineOpponent(game))">{{ determineOpponent(game) }}</td>
+              <td class="opponent-column" (click)="navigateToTeamSeasonSummary(teamSeasonSummary?.seasonYear, determineOpponent(game))">{{ determineOpponent(game) }}</td>
               <td>{{ determineResult(game) }}</td>
               <td>{{ determineLocation(game) }}</td>
-              <td>{{ determineRecordAtGame(game, teamSummary?.games) }}</td>
-              <td>{{ determineConferenceRecordAtGame(game, teamSummary?.games) }}</td>
+              <td>{{ determineRecordAtGame(game, teamSeasonSummary?.games) }}</td>
+              <td>{{ determineConferenceRecordAtGame(game, teamSeasonSummary?.games) }}</td>
           </tr>
           <!-- Conference tournament row -->
-          <tr *ngIf="i === 33 && teamSummary && teamSummary.games && teamSummary.games.length > 34">
+          <tr *ngIf="i === 33 && teamSeasonSummary && teamSeasonSummary.games && teamSeasonSummary.games.length > 34">
               <td colspan="6">Conference Tournament</td>
           </tr>
           <!-- NIT Row if Applicable-->

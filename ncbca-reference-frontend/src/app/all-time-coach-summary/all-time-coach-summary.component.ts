@@ -40,7 +40,7 @@ export class AllTimeCoachSummaryComponent implements OnInit {
     console.log(team);
   }
 
-  navigateToAllTimeCoachSummary(coach: string): void {
-    console.log(coach);
+  navigateToCoachSummary(coach: string): void {
+    this.router.navigate(['/coachSummary'], { queryParams: { coach: coach } });
   }
 }
