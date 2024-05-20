@@ -5,6 +5,7 @@ import { DraftSummaryComponent } from './draft-summary/draft-summary.component';
 import { CoachDirectoryComponent } from './coach-directory/coach-directory.component';
 import { TeamSeasonSummaryComponent } from './team-season-summary/team-season-summary.component';
 import { TeamDirectoryComponent } from './team-directory/team-directory.component';
+import { TeamSummaryComponent } from './team-summary/team-summary.component';
 
 export const routes: Routes = [
     {
@@ -24,5 +25,8 @@ export const routes: Routes = [
     },
     {
         path: 'coachDirectory', component: CoachDirectoryComponent
+    },
+    {
+        path: 'teamSummary', component: TeamSummaryComponent
     }
 ];

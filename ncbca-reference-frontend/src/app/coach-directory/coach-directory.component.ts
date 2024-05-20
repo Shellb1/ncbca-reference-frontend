@@ -37,7 +37,7 @@ export class CoachDirectoryComponent implements OnInit {
   
 
   navigateToAllTimeTeamSummary(team: string): void {
-    console.log(team);
+    this.router.navigate(['/teamSummary'], { queryParams: { teamName: team } });
   }
 
   navigateToCoachSummary(coach: string): void {

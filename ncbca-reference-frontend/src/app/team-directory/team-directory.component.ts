@@ -43,7 +43,7 @@ export class TeamDirectoryComponent implements OnInit {
   }
   
 
-  navigateToAllTimeTeamSummary(team: string): void {
-    console.log(team);
+  navigateToTeamSummary(team: string): void {
+    this.router.navigate(['/teamSummary'], { queryParams: { teamName: team } });
   }
 }

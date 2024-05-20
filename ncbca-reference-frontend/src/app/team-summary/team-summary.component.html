@@ -1,0 +1,25 @@
+<h2 style="margin-bottom: 0px;">{{teamSummary?.team?.name}}</h2>
+<p style="margin-bottom: 0px; margin-top: 0px; font-size: 12px;">Current Head coach:
+    <span class="coach-link" (click)="navigateToCoachSummary(teamSummary?.team?.coach)">
+        {{teamSummary?.team?.coach}}
+    </span>
+</p>
+<h4 class="coach-link">{{teamSummary?.team?.conferenceName}}</h4>
+<table class="table-container">
+    <thead>
+        <tr style="background-color: #c3d9ff; color: #039">
+            <td>Year</td>
+            <td>Record</td>
+            <td>Coach</td>
+            <td>Postseason Result</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let season of teamSummary?.seasons">
+            <td class="coach-link" (click)="navigateToTeamSummary(season.seasonYear, season.teamName)">{{season.seasonYear}}</td>
+            <td>{{season.gamesWon}}-{{season.gamesLost}}</td>
+            <td class="coach-link" (click)="navigateToCoachSummary(teamSummary?.team?.coach)">{{season.coach}}</td>
+            <td>{{ determinePostseasonStatus(season) }}</td>
+        </tr>
+    </tbody>
+</table>

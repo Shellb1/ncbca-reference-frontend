@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let team of teams">
-        <td class="coach-link" (click)="navigateToAllTimeTeamSummary(team.name)">{{ team.name }}</td>
+        <td class="coach-link" (click)="navigateToTeamSummary(team.name)">{{ team.name }}</td>
         <td>{{team.conferenceName}}</td>
         <td [ngClass]="{ 'inactive-team': !team.active }"> {{team.active}}</td>
       </tr>
