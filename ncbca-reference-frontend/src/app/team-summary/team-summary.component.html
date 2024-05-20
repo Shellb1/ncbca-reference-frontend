@@ -23,3 +23,22 @@
         </tr>
     </tbody>
 </table>
+<h4 style="padding-top: 5px;">Draft Picks:</h4>
+<table class="table-container">
+    <thead>
+        <tr style="background-color: #c3d9ff; color: #039">
+            <td>year</td>
+            <td>Player</td>
+            <td>Pick</td>
+            <td>Coach</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pick of teamSummary?.draftPicks">
+            <td class="coach-link" (click)="navigateToDraftSummary(pick.season)">{{pick.season}}</td>
+            <td>{{pick.playerName}}</td>
+            <td>{{pick.round}}:{{pick.pick}}
+            <td class="coach-link" (click)="navigateToCoachSummary(teamSummary?.team?.coach)">{{pick.coachName}}</td>
+        </tr>
+    </tbody>
+</table>

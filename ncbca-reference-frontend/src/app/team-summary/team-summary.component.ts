@@ -34,6 +34,18 @@ export class TeamSummaryComponent implements OnInit {
     this.teamSummaryService.getTeamSummary(teamName)
       .subscribe((teamSummary: TeamSummary) => {
         this.teamSummary = teamSummary;
+        this.teamSummary.draftPicks = this.teamSummary.draftPicks.sort((a, b) => {
+          // Sort by season
+          if (a.season !== b.season) {
+            return a.season - b.season;
+          }
+          // If season is same, sort by round
+          if (a.round !== b.round) {
+            return a.round - b.round;
+          }
+          // If round is same, sort by pick
+          return a.pick - b.pick;
+        });
       });
   }
 
@@ -107,5 +119,8 @@ export class TeamSummaryComponent implements OnInit {
     this.router.navigate(['/coachSummary'], { queryParams: { coach: coach}});
   } 
 
+  navigateToDraftSummary(year: number | undefined) {
+    this.router.navigate(['/draftSummary'], { queryParams: { year: year}});
+  } 
 
 }
