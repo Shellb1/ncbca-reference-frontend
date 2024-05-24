@@ -6,6 +6,8 @@ import { CoachDirectoryComponent } from './coach-directory/coach-directory.compo
 import { TeamSeasonSummaryComponent } from './team-season-summary/team-season-summary.component';
 import { TeamDirectoryComponent } from './team-directory/team-directory.component';
 import { TeamSummaryComponent } from './team-summary/team-summary.component';
+import { ConferenceDirectoryComponent } from './conference-directory/conference-directory.component';
+import { ConferenceSummaryComponent } from './conference-summary/conference-summary.component';
 
 export const routes: Routes = [
     {
@@ -28,5 +30,11 @@ export const routes: Routes = [
     },
     {
         path: 'teamSummary', component: TeamSummaryComponent
+    },
+    {
+        path: 'conferenceDirectory', component: ConferenceDirectoryComponent
+    },
+    {
+        path: 'conferenceSummary', component: ConferenceSummaryComponent
     }
 ];

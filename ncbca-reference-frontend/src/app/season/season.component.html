@@ -5,6 +5,7 @@
     <th>Team</th>
     <th>Record</th>
     <th>Coach</th>
+    <th>Conference</th>
   </tr>
 </thead>
 <tbody>
@@ -14,6 +15,7 @@
     <td>
       <a (click)="navigateToCoachSummary(season.coach)" class="coach-link">{{ season.coach }}</a>
     </td>
+    <td>{{season.conferenceName}}</td>
   </tr>
 </tbody>
 </table>

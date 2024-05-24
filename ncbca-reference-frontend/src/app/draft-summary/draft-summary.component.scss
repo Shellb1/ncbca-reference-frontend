@@ -1,11 +1,28 @@
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
 .draft-picks-table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders */
     margin: 0 auto;
 }
 
+.draft-picks-table th, .draft-picks-table td {
+    text-align: center; /* Align text to the left */
+}
+
 .coach-link {
-    padding-right: 10px;
     font-weight: bold;
     color: blue;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .draft-picks-table th, .draft-picks-table td {
+        padding: 2px 4px; /* Reduce padding on smaller screens */
+    }
 }

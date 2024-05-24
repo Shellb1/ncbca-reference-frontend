@@ -4,10 +4,23 @@
 
 <div class="wrapper">
   <div class="section-container">
-    <h3 style="margin-bottom: 0px; font-size:22px;">Season Summaries</h3>
+    <h3 style="margin-bottom: 0px; font-size:22px;">Team Summaries</h3>
     <div class="container">
       <a [routerLink]="['/season']" [queryParams]="{ year: 2078 }" routerLinkActive="active" class="year-link">2078</a>      
       <a [routerLink]="['/season']" [queryParams]="{ year: 2079 }" routerLinkActive="active" class="year-link">2079</a>      
+    </div> 
+  </div>
+
+  <div class="section-container">
+    <div class="line-container">
+      <div class="line-break"></div>
+      <div class="line-break"></div>
+    </div> 
+
+    <h3 style="margin-bottom: 0px; font-size:22px;">Conference Summaries</h3>
+    <div class="container">
+      <a [routerLink]="['/conferenceSummary']" [queryParams]="{ year: 2078 }" routerLinkActive="active" class="year-link">2078</a> 
+      <a [routerLink]="['/conferenceSummary']" [queryParams]="{ year: 2079 }" routerLinkActive="active" class="year-link">2079</a> 
     </div> 
   </div>
 
@@ -34,13 +47,14 @@
     <div class="container">
       <a [routerLink]="['/coachDirectory']" routerLinkActive="active" class="year-link">Coaches</a> 
       <a [routerLink]="['/teamDirectory']" routerLinkActive="active" class="year-link">Teams</a> 
-      <a [routerLink]="['/teamDirectory']" routerLinkActive="active" class="year-link">Conferences</a> 
+      <a [routerLink]="['/conferenceDirectory']" routerLinkActive="active" class="year-link">Conferences</a> 
     </div> 
     <div class="line-container">
       <div class="line-break"></div>
       <div class="line-break"></div>
     </div> 
   </div>
-  
-  <router-outlet></router-outlet>
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
