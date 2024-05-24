@@ -12,6 +12,7 @@ export class Game {
     losingTeamId: number;
     losingTeamName: string;
     losingTeamScore: number;
+    gameType: string;
 
     constructor(
         gameId: number,
@@ -26,7 +27,8 @@ export class Game {
         winningTeamScore: number,
         losingTeamId: number,
         losingTeamName: string,
-        losingTeamScore: number
+        losingTeamScore: number,
+        gameType: string
     ) {
         this.gameId = gameId;
         this.season = season;
@@ -41,5 +43,6 @@ export class Game {
         this.losingTeamId = losingTeamId;
         this.losingTeamName = losingTeamName;
         this.losingTeamScore = losingTeamScore;
+        this.gameType = gameType;
     }
 }

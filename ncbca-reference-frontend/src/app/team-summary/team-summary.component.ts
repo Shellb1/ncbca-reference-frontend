@@ -4,7 +4,7 @@ import { TeamSummary } from '../model/TeamSummary';
 import { TeamSummaryService } from '../services/team-summary-service';
 import { NgFor } from '@angular/common';
 import { Season } from '../model/Season';
-import { PostseasonGame } from '../model/PostseasonGame';
+import { Game } from '../model/Game';
 
 @Component({
   selector: 'app-team-summary',
@@ -49,66 +49,77 @@ export class TeamSummaryComponent implements OnInit {
       });
   }
 
-  determinePostseasonStatus(season: Season): string {
-    let postseasonGames: PostseasonGame[] = []
-    if (this.teamSummary !== undefined && this.teamSummary.postseasonGames != undefined) {
-      for (let i = 0; i < this.teamSummary.postseasonGames.length; i++) {
-        if (this.teamSummary.postseasonGames[i].season == season.seasonYear && (this.teamSummary.postseasonGames[i].losingTeamName == season.teamName || this.teamSummary.postseasonGames[i].winningTeamName == season.teamName)) {
-          postseasonGames.push(this.teamSummary.postseasonGames[i]);
-        }
-      }
-    }
+  loadGames(teamName: string): void {
 
+  }
+
+  determinePostseasonStatus(season: Season): string {
+    
+    if (!this.teamSummary?.games.length) {
+      return 'UNKNOWN_POSTSEASON';
+    }
+    
     // for no postseason
-    if (postseasonGames.length == 0) {
+    if (this.teamSummary?.games?.length == 0) {
       return 'None';
     }
 
-    // NIT teams
-    if (postseasonGames[0].gameType == 'NIT') {
-      return "NIT";
-    }
     
-    // first sixteen teams that lost
-    if (postseasonGames[0].gameType == 'FIRST_SIXTEEN' && postseasonGames.length == 1) {
-      return 'First Sixteen';
-    }
+    let games = this.teamSummary.games;
+    let gamesForSeason: Game[] = [];
+    
+    games.forEach(teamGame => {
+      if (teamGame.season == season.seasonYear) {
+        gamesForSeason.push(teamGame);
+      }
+    })
+    let hasPostSeason = false;
 
-    // first sixteen teams that won
-    if (postseasonGames[0].gameType == 'FIRST_SIXTEEN' && postseasonGames.length > 1) {
-      if (postseasonGames.length == 2) {
-        return 'R32';
-      } else if (postseasonGames.length == 3) {
-        return 'Sweet 16';
-      } else if (postseasonGames.length == 4) {
-        return 'Elite 8';
-      } else if (postseasonGames.length == 5) {
-        return 'Final 4';
-      } else if (postseasonGames.length == 6 && postseasonGames[5].losingTeamName == season.teamName) {
-        return 'Runner-up';
-      } else if (postseasonGames.length == 6 && postseasonGames[5].winningTeamName == season.teamName) {
-        return 'National Champion';
+    // NIT
+    for (let i = 0; i < gamesForSeason.length; i++) {
+      if (gamesForSeason[i].gameType == 'NIT') {
+        return 'NIT';
       }
     }
 
-    // main NT teams
-    if (postseasonGames[0].gameType == 'MAIN_FIELD') {
-      if (postseasonGames.length == 1) {
-        return 'R32';
-      } else if (postseasonGames.length == 2) {
-        return 'Sweet 16';
-      } else if (postseasonGames.length == 3) {
-        return 'Elite 8';
-      } else if (postseasonGames.length == 4) {
-        return 'Final 4';
-      } else if (postseasonGames.length == 5 && postseasonGames[4].losingTeamName == season.teamName) {
-        return 'Runner-up';
-      } else if (postseasonGames.length == 5 && postseasonGames[4].winningTeamName == season.teamName) {
-        return 'National Champion';
+    let hasFirstSixteen = false;
+    let hasNt = false;
+    let ntGamesCount = 0;
+    for (let i = 0; i < gamesForSeason.length; i++) {
+      if (gamesForSeason[i].gameType == 'FIRST_SIXTEEN') {
+        hasFirstSixteen = true;
+      }
+      if (gamesForSeason[i].gameType == 'NT') {
+        hasNt = true;
+        ntGamesCount++;
       }
     }
 
-    return 'UNKNOWN_POSTSEASON';
+    // first sixteen no NT
+    if (hasFirstSixteen && !hasNt) {
+      return 'First Sixteen'
+    }
+
+    if (ntGamesCount == 1) {
+      return 'R32';
+    } else if (ntGamesCount == 2) {
+      return 'Sweet 16';
+    } else if (ntGamesCount == 3) {
+      return 'Elite 8';
+    } else if (ntGamesCount == 4) {
+      return 'Final 4';
+    } else if (ntGamesCount == 5) {
+      let lastIndex = gamesForSeason.length - 1;
+      let lastgame = gamesForSeason[lastIndex];
+      if (lastgame.winningTeamId == season.teamId) {
+          return 'National Champion⭐';
+      } else {
+        return 'Runner-Up';
+      }
+    }
+   
+    
+    return 'No Postseason';
   }
 
   navigateToTeamSummary(year: number | undefined, teamName: string | undefined) {
