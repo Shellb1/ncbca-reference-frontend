@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #c3d9ff;
+    color: #039
+  }
+
+  td:first-child {
+    text-align: left;
+  }
+
+
+.coach-link {
+  font-weight: bold;
+  color: blue;
+  text-decoration: none;
+  cursor: pointer;
+}
