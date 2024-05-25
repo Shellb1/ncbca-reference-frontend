@@ -20,6 +20,7 @@ export class CoachComponent implements OnInit {
   draftPicks: DraftPick[] | undefined;
 
   constructor(private route: ActivatedRoute, private coachesService: CoachesService, private router: Router) {}
+  
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const coach = params['coach']; 

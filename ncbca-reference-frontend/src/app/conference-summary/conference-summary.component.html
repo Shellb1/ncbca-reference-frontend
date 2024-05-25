@@ -1,1 +1,23 @@
-<p>conference-summary works!</p>
+<div *ngFor="let conferenceSummary of conferenceSummaries" class="conference-summary-container">
+    <p>
+      <strong>
+        {{conferenceSummary.conferenceName}}
+      </strong>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Record</th>
+          <th>Conf</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of conferenceSummary.conferenceRecordList; let i = index;">
+          <td>{{i + 1}}. <a (click)="navigateToTeamSeasonSummary(team.teamName, team.season)" class="coach-link">{{team.teamName}}</a></td>
+          <td>{{team.overallRecord}}</td>
+          <td>{{team.conferenceRecord}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
