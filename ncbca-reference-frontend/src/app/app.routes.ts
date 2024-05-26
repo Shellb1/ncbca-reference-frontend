@@ -9,6 +9,7 @@ import { TeamSummaryComponent } from './team-summary/team-summary.component';
 import { ConferenceDirectoryComponent } from './conference-directory/conference-directory.component';
 import { ConferenceSummaryComponent } from './conference-summary/conference-summary.component';
 import { AllTimeProgramRankingsComponent } from './all-time-program-rankings/all-time-program-rankings.component';
+import { AllTimeCoachRankingsComponent } from './all-time-coach-rankings/all-time-coach-rankings.component';
 
 export const routes: Routes = [
     {
@@ -40,5 +41,8 @@ export const routes: Routes = [
     },
     {
         path: 'allTimeProgramRankings', component: AllTimeProgramRankingsComponent
+    },
+    {
+        path: 'allTimeCoachRankings', component: AllTimeCoachRankingsComponent
     }
 ];
