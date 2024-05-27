@@ -36,11 +36,11 @@
           </tr>
           <!-- NT Row if Applicable-->
           <tr *ngIf="i > 33 && showFirstSixteenRow(i + 1)">
-          <td colspan="6">National Tournament (First 16)</td>
+          <td colspan="6">National Tournament (First 16) - {{teamSeasonSummary?.seed}} Seed</td>
           </tr>
           <!-- NT Row if Applicable-->
           <tr *ngIf="i > 33 && showNTRow(i + 1)">
-          <td colspan="6">National Tournament</td>
+          <td colspan="6">National Tournament - {{teamSeasonSummary?.seed}} Seed</td>
           </tr>
       </ng-container>    
       </tbody>

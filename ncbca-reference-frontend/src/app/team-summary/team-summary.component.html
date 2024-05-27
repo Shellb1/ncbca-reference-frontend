@@ -12,6 +12,7 @@
             <td>Record</td>
             <td>Coach</td>
             <td>Postseason Result</td>
+            <td>NT Seed</td>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
             <td>{{season.gamesWon}}-{{season.gamesLost}}</td>
             <td class="coach-link" (click)="navigateToCoachSummary(teamSummary?.team?.coach)">{{season.coach}}</td>
             <td>{{ determinePostseasonStatus(season) }}</td>
+            <td>{{ determineNTSeedForSeason(season) }}</td>
         </tr>
     </tbody>
 </table>

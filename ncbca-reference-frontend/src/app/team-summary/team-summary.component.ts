@@ -5,6 +5,7 @@ import { TeamSummaryService } from '../services/team-summary-service';
 import { NgFor } from '@angular/common';
 import { Season } from '../model/Season';
 import { Game } from '../model/Game';
+import { NTSeed } from '../model/NTSeed';
 
 @Component({
   selector: 'app-team-summary',
@@ -47,10 +48,6 @@ export class TeamSummaryComponent implements OnInit {
           return a.pick - b.pick;
         });
       });
-  }
-
-  loadGames(teamName: string): void {
-
   }
 
   determinePostseasonStatus(season: Season): string {
@@ -118,8 +115,16 @@ export class TeamSummaryComponent implements OnInit {
       }
     }
    
-    
     return 'No Postseason';
+  }
+
+  determineNTSeedForSeason(season: Season): number | null {
+    let year = season.seasonYear;
+    let ntSeedForYearIfExists: NTSeed | undefined = this.teamSummary?.ntSeeds.find(ntSeed => ntSeed.season == year);
+    if (ntSeedForYearIfExists) {
+        return ntSeedForYearIfExists.seed;
+    }
+    return null;
   }
 
   navigateToTeamSummary(year: number | undefined, teamName: string | undefined) {
