@@ -1,5 +1,7 @@
-.conference-summary-container {
+  .conference-summary-container {
     display: inline-block;
+    margin: 20px;
+    padding: 20px;
   }
   
   table {
@@ -28,11 +30,3 @@
   cursor: pointer;
 }
   
-.year-link {
-  font-weight: bold;
-  color: blue;
-  text-decoration: none;
-  cursor: pointer;
-  padding-left: 8px;
-  margin-top: 0px;
-}

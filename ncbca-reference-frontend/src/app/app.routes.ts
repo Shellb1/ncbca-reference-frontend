@@ -7,9 +7,10 @@ import { TeamSeasonSummaryComponent } from './team-season-summary/team-season-su
 import { TeamDirectoryComponent } from './team-directory/team-directory.component';
 import { TeamSummaryComponent } from './team-summary/team-summary.component';
 import { ConferenceDirectoryComponent } from './conference-directory/conference-directory.component';
-import { ConferenceSummaryComponent } from './conference-summary/conference-summary.component';
 import { AllTimeProgramRankingsComponent } from './all-time-program-rankings/all-time-program-rankings.component';
 import { AllTimeCoachRankingsComponent } from './all-time-coach-rankings/all-time-coach-rankings.component';
+import { ConferenceSummariesComponent } from './conference-summaries/conference-summaries.component';
+import { ConferenceSummaryComponent } from './conference-summary/conference-summary.component';
 
 export const routes: Routes = [
     {
@@ -37,12 +38,15 @@ export const routes: Routes = [
         path: 'conferenceDirectory', component: ConferenceDirectoryComponent
     },
     {
-        path: 'conferenceSummary', component: ConferenceSummaryComponent
+        path: 'conferenceSummaries', component: ConferenceSummariesComponent
     },
     {
         path: 'allTimeProgramRankings', component: AllTimeProgramRankingsComponent
     },
     {
         path: 'allTimeCoachRankings', component: AllTimeCoachRankingsComponent
+    },
+    {
+        path: 'conferenceSummary', component: ConferenceSummaryComponent
     }
 ];

@@ -15,4 +15,13 @@ export class ConferenceSummaryService {
     return this.http.get<ConferenceSummary[]>(`/ncbca-reference-backend/conferencesSummary?season=${year}`);
   }
 
+getConferenceSummaryForConference(conferenceName: string, season: number | null): Observable<ConferenceSummary> {
+    let url = `/ncbca-reference-backend/conferenceSummary?conferenceName=${conferenceName}`;
+    if (season !== undefined) {
+        url += `&season=${season}`;
+    }
+    console.log(url);
+    return this.http.get<ConferenceSummary>(url);
+}
+
 }

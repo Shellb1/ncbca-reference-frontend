@@ -1,7 +1,10 @@
-<div *ngFor="let conferenceSummary of conferenceSummaries" class="conference-summary-container">
+<a [routerLink]="['/conferenceSummary']" [queryParams]="{ season: 2078, conferenceName: conferenceSummary?.conferenceName }"routerLinkActive="active" class="year-link">2078</a> 
+<a [routerLink]="['/conferenceSummary']" [queryParams]="{ season: 2079, conferenceName: conferenceSummary?.conferenceName }" routerLinkActive="active" class="year-link">2079</a> 
+<br/>
+<div class="conference-summary-container">
     <p>
       <strong>
-        {{conferenceSummary.conferenceName}}
+        {{conferenceSummary?.season}} {{conferenceSummary?.conferenceName}}
       </strong>
     </p>
     <table>
@@ -13,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let team of conferenceSummary.conferenceRecordList; let i = index;">
+        <tr *ngFor="let team of conferenceSummary?.conferenceRecordList; let i = index;">
           <td>{{i + 1}}. <a (click)="navigateToTeamSeasonSummary(team.teamName, team.season)" class="coach-link">{{team.teamName}}</a></td>
           <td>{{team.overallRecord}}</td>
           <td>{{team.conferenceRecord}}</td>
