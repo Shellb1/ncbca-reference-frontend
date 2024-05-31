@@ -44,6 +44,57 @@ export class SeasonComponent implements OnInit {
   createRecord(gamesWon: Number, gamesLost: Number): string {
     return gamesWon + "-" + gamesLost;
   }
+  sortSeasonsByRpi(): void {
+    this.seasons = [...this.seasons].sort((a, b) => b.seasonMetrics.rpi - a.seasonMetrics.rpi);
+}
+
+sortSeasonsBySOS(): void {
+    this.seasons = [...this.seasons].sort((a, b) => b.seasonMetrics.sos - a.seasonMetrics.sos);
+}
+
+sortSeasonsByRecord(): void {
+    this.seasons = [...this.seasons].sort((a, b) => {
+        const recordA = a.gamesWon - a.gamesLost;
+        const recordB = b.gamesWon - b.gamesLost;
+        return recordB - recordA;
+    });
+}    
+
+sortBySrsRanking(): void {
+  this.seasons = [...this.seasons].sort((a, b) => {
+     return b.seasonMetrics.srs - a.seasonMetrics.srs
+  });
+}    
+
+determineRPIRank(season: Season): number {
+  const sortedSeasons = [...this.seasons].sort((a, b) => b.seasonMetrics.rpi - a.seasonMetrics.rpi);
+  for (let i = 0; i < sortedSeasons.length; i++) {
+      if (sortedSeasons[i].teamId === season.teamId && sortedSeasons[i].seasonYear === season.seasonYear) {
+          return i + 1;
+      }
+  }
+  return -1; // Return -1 if the season is not found in the list
+}
+
+determineSrsRank(season: Season): number {
+  const sortedSeasons = [...this.seasons].sort((a, b) => b.seasonMetrics.srs - a.seasonMetrics.srs);
+  for (let i = 0; i < sortedSeasons.length; i++) {
+      if (sortedSeasons[i].teamId === season.teamId && sortedSeasons[i].seasonYear === season.seasonYear) {
+          return i + 1;
+      }
+  }
+  return -1; // Return -1 if the season is not found in the list
+}
+
+determineSOSRank(season: Season): number {
+  const sortedSeasons = [...this.seasons].sort((a, b) => b.seasonMetrics.sos - a.seasonMetrics.sos);
+  for (let i = 0; i < sortedSeasons.length; i++) {
+      if (sortedSeasons[i].teamId === season.teamId && sortedSeasons[i].seasonYear === season.seasonYear) {
+          return i + 1;
+      }
+  }
+  return -1; // Return -1 if the season is not found in the list
+}
 
   navigateToCoachSummary(coach: string) {
     this.router.navigate(['/coachSummary'], { queryParams: { coach: coach } });
