@@ -8,7 +8,6 @@
     <th>Conference</th>
     <th (click)="sortSeasonsByRpi()">RPI</th>
     <th (click)="sortSeasonsBySOS()">SOS</th>
-    <th (click)="sortBySrsRanking()">SRS</th>
   </tr>
 </thead>
 <tbody>
@@ -21,7 +20,6 @@
     <td>{{season.conferenceName}}</td>
     <td style="padding-right: 10px">{{determineRPIRank(season)}}</td>
     <td style="padding-right: 10px">{{determineSOSRank(season)}}</td>
-    <td>{{season.seasonMetrics.srs.toFixed(2)}} ({{determineSrsRank(season)}})</td>
   </tr>
 </tbody>
 </table>

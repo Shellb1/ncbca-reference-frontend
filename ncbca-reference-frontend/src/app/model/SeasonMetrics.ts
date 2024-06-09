@@ -4,7 +4,6 @@ export class SeasonMetrics {
      season: number;
      rpi: number;
      sos: number;
-     srs: number;
 
     constructor(
       teamName: string,
@@ -12,13 +11,11 @@ export class SeasonMetrics {
       season: number,
       rpi: number,
       sos: number,
-      srs: number
     ) {
       this.teamName = teamName;
       this.teamId = teamId;
       this.season = season;
       this.rpi = rpi;
       this.sos = sos;
-      this.srs = srs;
     }
 }

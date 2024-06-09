@@ -60,24 +60,8 @@ sortSeasonsByRecord(): void {
     });
 }    
 
-sortBySrsRanking(): void {
-  this.seasons = [...this.seasons].sort((a, b) => {
-     return b.seasonMetrics.srs - a.seasonMetrics.srs
-  });
-}    
-
 determineRPIRank(season: Season): number {
   const sortedSeasons = [...this.seasons].sort((a, b) => b.seasonMetrics.rpi - a.seasonMetrics.rpi);
-  for (let i = 0; i < sortedSeasons.length; i++) {
-      if (sortedSeasons[i].teamId === season.teamId && sortedSeasons[i].seasonYear === season.seasonYear) {
-          return i + 1;
-      }
-  }
-  return -1; // Return -1 if the season is not found in the list
-}
-
-determineSrsRank(season: Season): number {
-  const sortedSeasons = [...this.seasons].sort((a, b) => b.seasonMetrics.srs - a.seasonMetrics.srs);
   for (let i = 0; i < sortedSeasons.length; i++) {
       if (sortedSeasons[i].teamId === season.teamId && sortedSeasons[i].seasonYear === season.seasonYear) {
           return i + 1;
