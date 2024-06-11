@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Coach } from '../model/Coach';
 import { NgClass, NgFor } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CoachDirectoryService } from '../services/coach-directory-service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CoachDirectoryComponent implements OnInit {
 
   coaches: Coach[] = []
 
-  public constructor(private route: ActivatedRoute, private coachesService: CoachDirectoryService, private router: Router) {}
+  public constructor(private coachesService: CoachDirectoryService, private router: Router) {}
 
   ngOnInit(): void {
 
@@ -33,8 +33,6 @@ export class CoachDirectoryComponent implements OnInit {
         });
       });
   }
-  
-  
 
   navigateToAllTimeTeamSummary(team: string): void {
     this.router.navigate(['/teamSummary'], { queryParams: { teamName: team } });

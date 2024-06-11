@@ -28,8 +28,6 @@ export class DraftSummaryComponent {
       if (year) {
         this.loadDraftPicks(year);
         this.season = year;
-      } else {
-        // Handle case when query parameter is not provided
       }
     });
   }
@@ -45,17 +43,17 @@ export class DraftSummaryComponent {
           // If round is same, sort by pick
           return a.pick - b.pick;
         });
-  
+
         // Assign sorted draft picks to the property
         this.draftPicks = draftPicks;
       });
   }
 
-navigateToTeamSummary(teamName: String | undefined) {
-  this.router.navigate(['/teamSummary'], { queryParams: { teamName: teamName } });
-}
+  navigateToTeamSummary(teamName: String | undefined) {
+    this.router.navigate(['/teamSummary'], { queryParams: { teamName: teamName } });
+  }
 
-navigateToCoachSummary(coach: String) {
-  this.router.navigate(['/coachSummary'], { queryParams: { coach: coach}});
-} 
+  navigateToCoachSummary(coach: String) {
+    this.router.navigate(['/coachSummary'], { queryParams: { coach: coach } });
+  }
 }

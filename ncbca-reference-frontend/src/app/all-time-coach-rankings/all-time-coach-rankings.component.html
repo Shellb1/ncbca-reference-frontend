@@ -1,25 +1,26 @@
 <table>
-    <thead>
-      <tr>
-        <th>Coach</th>
-        <th>Record</th>
-        <th>Current Team</th>
-        <th>CH</th>
-        <th>F4</th>
-        <th>E8</th>
-        <th>S16</th>
-        <th>App</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let coach of allTimeCoachRankings; let i = index;">
-        <td>{{i + 1}}. <a (click)="navigateToCoachSummary(coach.coachName)" class="coach-link">{{coach.coachName}}</a></td>
-        <td>{{coach.wins}}-{{coach.losses}}</td>
-        <td><a (click)="navigateToTeamSummary(coach.currentTeam)" class="coach-link">{{coach.currentTeam}}</a></td>
-        <td>{{coach.championships}}</td>
-        <td>{{coach.finalFours}}</td>
-        <td>{{coach.eliteEights}}</td>
-        <td>{{coach.sweetSixteens}}</td>
-        <td>{{coach.tourneyAppearances}}</td>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>Coach</th>
+      <th>Record</th>
+      <th>Current Team</th>
+      <th>CH</th>
+      <th>F4</th>
+      <th>E8</th>
+      <th>S16</th>
+      <th>App</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let coach of allTimeCoachRankings; let i = index;">
+      <td>{{i + 1}}. <a (click)="navigateToCoachSummary(coach.coachName)" class="coach-name">{{coach.coachName}}</a>
+      </td>
+      <td>{{coach.wins}}-{{coach.losses}}</td>
+      <td><a (click)="navigateToTeamSummary(coach.currentTeam)" class="current-team">{{coach.currentTeam}}</a></td>
+      <td>{{coach.championships}}</td>
+      <td>{{coach.finalFours}}</td>
+      <td>{{coach.eliteEights}}</td>
+      <td>{{coach.sweetSixteens}}</td>
+      <td>{{coach.tourneyAppearances}}</td>
+  </tbody>
+</table>

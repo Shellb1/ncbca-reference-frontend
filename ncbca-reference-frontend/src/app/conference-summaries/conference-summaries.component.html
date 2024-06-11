@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let team of conferenceSummary.conferenceRecordList; let i = index;">
-          <td>{{i + 1}}. <a (click)="navigateToTeamSeasonSummary(team.teamName, team.season)" class="coach-link">{{team.teamName}}</a></td>
+          <td>{{i + 1}}. <a (click)="navigateToTeamSeasonSummary(team.teamName, team.season)" class="team-link">{{team.teamName}}</a></td>
           <td>{{team.overallRecord}}</td>
           <td>{{team.conferenceRecord}}</td>
         </tr>

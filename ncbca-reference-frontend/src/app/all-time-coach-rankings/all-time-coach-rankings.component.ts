@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { AllTimeCoachRanking } from '../model/AllTimeCoachRanking';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AllTimeCoachesService } from '../services/all-time-coaches-service';
 
 @Component({
@@ -15,20 +15,17 @@ export class AllTimeCoachRankingsComponent {
 
   allTimeCoachRankings: AllTimeCoachRanking[] = [];
 
-  constructor(private route: ActivatedRoute, private allTimeCoachesService: AllTimeCoachesService, private router: Router) {}
+  constructor(private allTimeCoachesService: AllTimeCoachesService, private router: Router) { }
 
   ngOnInit(): void {
-   
     this.loadAllTimeCoachesRankings();
-
   }
 
   loadAllTimeCoachesRankings(): void {
     this.allTimeCoachesService.getAllTimeCoachRankings()
-    .subscribe((allTimeCoachRankings: AllTimeCoachRanking[]) => {
-      this.allTimeCoachRankings = allTimeCoachRankings;
-      console.log(allTimeCoachRankings)
-    });
+      .subscribe((allTimeCoachRankings: AllTimeCoachRanking[]) => {
+        this.allTimeCoachRankings = allTimeCoachRankings;
+      });
   }
 
   navigateToCoachSummary(coach: string) {

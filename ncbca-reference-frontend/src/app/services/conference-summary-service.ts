@@ -20,7 +20,6 @@ getConferenceSummaryForConference(conferenceName: string, season: number | null)
     if (season !== undefined) {
         url += `&season=${season}`;
     }
-    console.log(url);
     return this.http.get<ConferenceSummary>(url);
 }
 

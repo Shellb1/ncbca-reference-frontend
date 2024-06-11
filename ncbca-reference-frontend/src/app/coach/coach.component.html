@@ -1,23 +1,24 @@
 <h1>Coach Summary for: {{ coachSummaryFor }}</h1>
-<div class="container">
+<div class="coach-summary-container">
   <div class="table-container">
     <h1>Seasons Coached</h1>
     <table>
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Team</th>
-            <th>Record</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let season of coachSummary?.seasonsCoached">
-            <td class="first-column" (click)="navigateToTeamSeasonSummary(season.seasonYear, season.teamName)">{{ season.seasonYear }}</td>
-            <td style="color: blue; cursor: pointer; font-weight: bold;" (click)="navigateToTeamSummary(season.teamName)">{{ season?.teamName }}</td>
-            <td>{{ createRecord(season?.gamesWon || 0, season?.gamesLost || 0) }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Team</th>
+          <th>Record</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let season of coachSummary?.seasonsCoached">
+          <td class="first-column" (click)="navigateToTeamSeasonSummary(season.seasonYear, season.teamName)">{{
+            season.seasonYear }}</td>
+          <td class="team-name-column" (click)="navigateToTeamSummary(season.teamName)">{{ season?.teamName }}</td>
+          <td>{{ createRecord(season?.gamesWon || 0, season?.gamesLost || 0) }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="table-container">
     <h2>Record Against Other Coaches</h2>
@@ -31,33 +32,35 @@
       <tbody>
         <tr *ngFor="let coach of coachRecordMap | keyvalue">
           <td>
-            <a class="first-column" (click)="navigateToCoachSummary(coach.key)">{{ coach.key }}</a></td>
+            <a class="first-column" (click)="navigateToCoachSummary(coach.key)">{{ coach.key }}</a>
+          </td>
           <td>{{ coach.value }}</td>
         </tr>
-      </tbody>        
+      </tbody>
     </table>
   </div>
-  <br/>
+  <br />
 </div>
 <div class="draft-picks-container">
   <h2>Draft Picks</h2>
   <table class="draft-picks-table" *ngIf="draftPicks?.length != 0">
-      <thead>
-        <tr>
-          <th style="padding-right: 20px;">Year</th>
-          <th style="padding-right: 20px;">Player</th>
-          <th style="padding-right: 20px;">Pick</th>
-          <th style="padding-right: 20px;">Team</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pick of draftPicks">
-          <td style="padding-right: 20px;">{{ pick.season }}</td>
-          <td style="padding-right: 20px;">{{ pick.playerName }}</td>
-          <td style="padding-right: 20px;">{{ pick.round }}:{{ pick.pick }}</td>
-          <td style="padding-right: 20px;"><a (click)="navigateToTeamSummary(pick?.collegeTeamName)" class="first-column">{{ pick.collegeTeamName }}</a></td>
-        </tr>
-      </tbody>
-    </table>
-    <h4 *ngIf="draftPicks?.length == 0">No Draft Picks Found</h4>
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Player</th>
+        <th>Pick</th>
+        <th>Team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pick of draftPicks">
+        <td>{{ pick.season }}</td>
+        <td>{{ pick.playerName }}</td>
+        <td>{{ pick.round }}:{{ pick.pick }}</td>
+        <td><a (click)="navigateToTeamSummary(pick?.collegeTeamName)"
+            class="first-column">{{ pick.collegeTeamName }}</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 *ngIf="draftPicks?.length == 0">No Draft Picks Found</h4>
 </div>

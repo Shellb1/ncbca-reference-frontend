@@ -32,7 +32,6 @@ export class ConferenceSummariesComponent {
     this.conferenceSummaryService.getConferenceSummariesForYear(year)
     .subscribe((conferenceSummaries: ConferenceSummary[]) => {
       this.conferenceSummaries = conferenceSummaries;
-      console.log(conferenceSummaries);
     });
   }
 

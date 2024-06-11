@@ -23,8 +23,6 @@ export class ConferenceSummaryComponent implements OnInit {
       const season = params['season'];
       if (conferenceName) {
         this.loadConferenceSummary(conferenceName, season);
-      } else {
-        // Handle case when query parameter is not provided
       }
     });
   }
@@ -33,7 +31,6 @@ export class ConferenceSummaryComponent implements OnInit {
     this.conferenceSummaryService.getConferenceSummaryForConference(conferenceName, season)
       .subscribe((conferenceSummary: ConferenceSummary) => {
         this.conferenceSummary = conferenceSummary;
-        console.log(this.conferenceSummary);
       });
   }
   
