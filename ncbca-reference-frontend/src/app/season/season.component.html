@@ -8,18 +8,21 @@
     <th>Conference</th>
     <th (click)="sortSeasonsByRpi()">RPI</th>
     <th (click)="sortSeasonsBySOS()">SOS</th>
+    <th>NT Seed</th>
   </tr>
 </thead>
 <tbody>
   <tr *ngFor="let season of seasons">
-    <td class="coach-link" (click)="navigateToTeamSummary(season.teamName, season.seasonYear)">{{ season.teamName }}</td>
+    <td class="coach-link" (click)="navigateToTeamSummary(season.teamName, season.seasonYear)">
+      {{ season.teamName }}</td>
     <td>{{season.gamesWon}}-{{season.gamesLost}}</td>
     <td>
       <a (click)="navigateToCoachSummary(season.coach)" class="coach-link">{{ season.coach }}</a>
     </td>
     <td>{{season.conferenceName}}</td>
-    <td style="padding-right: 10px">{{determineRPIRank(season)}}</td>
-    <td style="padding-right: 10px">{{determineSOSRank(season)}}</td>
+    <td>{{determineRPIRank(season)}}</td>
+    <td>{{determineSOSRank(season)}}</td>
+    <td>{{season.ntSeed}}</td>
   </tr>
 </tbody>
 </table>
