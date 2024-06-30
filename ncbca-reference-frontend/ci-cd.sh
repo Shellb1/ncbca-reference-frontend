@@ -4,7 +4,8 @@
 source secrets.env
 
 # EC2 Info
-EC2_HOST=ec2-3-18-103-103.us-east-2.compute.amazonaws.com
+EC2_HOST=ec2-3-144-5-35.us-east-2.compute.amazonaws.com
+
 
 # Build Angular project
 ng build --configuration production

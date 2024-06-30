@@ -8,6 +8,11 @@
     <th>Conference</th>
     <th (click)="sortSeasonsByRpi()">RPI</th>
     <th (click)="sortSeasonsBySOS()">SOS</th>
+    <th (click)="sortSeasonsBySRS()">SRS</th>
+    <th>Q1</th>
+    <th>Q2</th>
+    <th>Q3</th>
+    <th>Q4</th>
     <th>NT Seed</th>
   </tr>
 </thead>
@@ -22,6 +27,11 @@
     <td>{{season.conferenceName}}</td>
     <td>{{determineRPIRank(season)}}</td>
     <td>{{determineSOSRank(season)}}</td>
+    <td>{{determineSRSRank(season)}}</td>
+    <td>{{season.seasonMetrics.q1Record}}</td>
+    <td>{{season.seasonMetrics.q2Record}}</td>
+    <td>{{season.seasonMetrics.q3Record}}</td>
+    <td>{{season.seasonMetrics.q4Record}}</td>
     <td>{{season.ntSeed}}</td>
   </tr>
 </tbody>

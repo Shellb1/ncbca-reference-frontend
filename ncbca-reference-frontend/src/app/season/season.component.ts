@@ -52,6 +52,11 @@ sortSeasonsBySOS(): void {
     this.seasons = [...this.seasons].sort((a, b) => b.seasonMetrics.sos - a.seasonMetrics.sos);
 }
 
+sortSeasonsBySRS(): void {
+  this.seasons = [...this.seasons].sort((a, b) => b.seasonMetrics.srs - a.seasonMetrics.srs);
+}
+
+
 sortSeasonsByRecord(): void {
     this.seasons = [...this.seasons].sort((a, b) => {
         const recordA = a.gamesWon - a.gamesLost;
@@ -78,6 +83,16 @@ determineSOSRank(season: Season): number {
       }
   }
   return -1; // Return -1 if the season is not found in the list
+}
+
+determineSRSRank(season: Season): number {
+  const sortedSeasons = [...this.seasons].sort((a, b) => b.seasonMetrics.srs - a.seasonMetrics.srs);
+  for (let i = 0; i < sortedSeasons.length; i++) {
+    if (sortedSeasons[i].teamId === season.teamId && sortedSeasons[i].seasonYear === season.seasonYear) {
+        return i + 1;
+    }
+}
+return -1; // Return -1 if the season is not found in the list
 }
 
   navigateToCoachSummary(coach: string) {
