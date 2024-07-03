@@ -15,9 +15,8 @@
 }
 
 .table-container {
-    width: 525px; /* Set your desired width */
-    margin: 0 auto; /* This centers the div horizontally */
-}
+    display: flex;
+    justify-content: center;}
 
 th {
     padding: 8px;
@@ -25,7 +24,6 @@ th {
 
 table {
     border-spacing: 0px;
-    border-collapse: collapse;
 }
 
 td {
@@ -46,3 +44,14 @@ td {
     align-items: center;
     justify-content: center;
 }
+
+.metrics-container {
+}
+
+.metrics-container p {
+    display: block !important;
+    margin: 5px 0 !important; /* Adjust margin as needed */
+}
+
+
+

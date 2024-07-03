@@ -12,6 +12,15 @@
   <a [routerLink]="['/teamSeasonSummary']" [queryParams]="{ year: 2080, teamName: teamSeasonSummary?.teamName }"
   routerLinkActive="active" class="coach-link">2080</a>
 
+  <div class="metrics-container">
+    <p>Q1 Record: {{teamSeasonSummary?.seasonMetrics?.q1Record}}</p>
+    <p>Q2 Record: {{teamSeasonSummary?.seasonMetrics?.q2Record}}</p>
+    <p>Q3 Record: {{teamSeasonSummary?.seasonMetrics?.q3Record}}</p>
+    <p>Q4 Record: {{teamSeasonSummary?.seasonMetrics?.q4Record}}</p>
+    <p>RPI Rank: {{teamSeasonSummary?.seasonMetrics?.rpi}}</p>
+    <p>SOS Rank: {{teamSeasonSummary?.seasonMetrics?.sos}}</p>
+    <p>SRS Rank: {{teamSeasonSummary?.seasonMetrics?.srs}}</p>
+  </div>
 <div class="table-container">
   <table>
     <thead>
@@ -31,7 +40,7 @@
           <td>{{i + 1}}</td>
           <td class="opponent-column"
             (click)="navigateToTeamSeasonSummary(teamSeasonSummary?.seasonYear, determineOpponent(game))">{{
-            determineOpponent(game) }}</td>
+            determineOpponent(game) }} ({{determineOpponentRecord(game)}})</td>
           <td>{{ determineResult(game) }}</td>
           <td>{{ determineLocation(game) }}</td>
           <td>{{ determineRecordAtGame(game, teamSeasonSummary?.games) }}</td>

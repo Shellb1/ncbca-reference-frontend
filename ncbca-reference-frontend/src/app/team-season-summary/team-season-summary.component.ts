@@ -46,6 +46,15 @@ export class TeamSeasonSummaryComponent implements OnInit {
     }
   }
 
+determineOpponentRecord(game: Game) {
+  let opponent: string = this.determineOpponent(game);
+  if (opponent == game.winningTeamName) {
+    return game.winningTeamRecord;
+  } else {
+    return game.losingTeamRecord;
+  }
+}
+
   determineResult(game: Game) {
     let teamName = this.teamSeasonSummary?.teamName;
     let result;
