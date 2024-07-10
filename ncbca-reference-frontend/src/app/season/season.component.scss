@@ -1,6 +1,5 @@
 
 .coach-link {
-    padding-right: 10px;
     font-weight: bold;
     color: blue;
     text-decoration: none;
@@ -9,4 +8,13 @@
 
 th {
     cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #c3d9ff;
+}
+
+.table-container {
+    overflow-y: auto;
+    height: 500px;
 }
