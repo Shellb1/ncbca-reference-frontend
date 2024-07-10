@@ -21,8 +21,8 @@
     <td class="coach-link" (click)="navigateToTeamSummary(season.teamName, season.seasonYear)">
       {{ season.teamName }}</td>
     <td>{{season.gamesWon}}-{{season.gamesLost}}</td>
-    <td>
-      <a (click)="navigateToCoachSummary(season.coach)" class="coach-link">{{ season.coach }}</a>
+    <td style="white-space: normal; max-width: 200px;">
+      <a  style="display: block; word-wrap: break-word;"(click)="navigateToCoachSummary(season.coach)" class="coach-link">{{ season.coach }}</a>
     </td>
     <td>{{season.conferenceName}}</td>
     <td>{{determineRPIRank(season)}}</td>
