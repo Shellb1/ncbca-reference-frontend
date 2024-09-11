@@ -10,8 +10,8 @@ export class Season {
   conferenceName: string;
   seasonMetrics: SeasonMetrics;
   ntSeed: number;
-
-  constructor(teamId: number, teamName: string, gamesWon: number, gamesLost: number, seasonYear: number, coach: string, conferenceName: string, seasonMetrics: SeasonMetrics, ntSeed: number) {
+  prestige: number;
+  constructor(teamId: number, teamName: string, gamesWon: number, gamesLost: number, seasonYear: number, coach: string, conferenceName: string, seasonMetrics: SeasonMetrics, ntSeed: number, prestige: number) {
     this.teamId = teamId;
     this.teamName = teamName;
     this.gamesWon = gamesWon;
@@ -21,6 +21,7 @@ export class Season {
     this.conferenceName = conferenceName;
     this.seasonMetrics = seasonMetrics;
     this.ntSeed = ntSeed;
+    this.prestige = prestige;
   }
 
 }
